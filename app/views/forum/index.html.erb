@@ -54,7 +54,6 @@
     border-width:2px;
     border-color: #18654e;
     color:#18654e;
-    width:100%;
     background-color: #18654e;
     color: #ffff;
   }
@@ -99,7 +98,7 @@
   </div>
   <!--End Jumbotron -->
 
-  <div class="mt-5 mb-5">
+  <div class="mt-5 mb-5 d-flex justify-content-end">
       <%= link_to "Create a new post", new_post_path, class: "btn btn-edit" %>
   </div>
   
@@ -121,7 +120,7 @@
   </div>
     <% if @posts.count > 4 %> 
       <div class="d-flex justify-content-center my-5 btn-posts">
-          <button class="btn btn-edit" style="width:100%;" type="button" data-bs-toggle="collapse" data-bs-target=".collapse" aria-controls="collapseExample" aria-expanded="false" aria-label="Toggle cards">
+          <button class="btn btn-edit" type="button" data-bs-toggle="collapse" data-bs-target=".collapse" aria-controls="collapseExample" aria-expanded="false" aria-label="Toggle cards">
               Load More
           </button>
       </div>

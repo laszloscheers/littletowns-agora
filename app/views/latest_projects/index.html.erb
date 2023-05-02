@@ -82,35 +82,80 @@
   }
   .image-fluid{
     width: 100%;
+    width: 100%;
   }
   @media(max-width:1622px){
     .first-project p{
       font-size:1.3vw;
     }
   }
-  @media(max-width:1228px){
-    .first-project p{
-      font-size:1.5vw;
+  @media(max-width:1371px){
+    .first-project{
+      display:flex;
+      flex-direction: column;
     }
-  }
-  @media(max-width:991px){
+    .col-md-6:first-child{
+      order:2;
+    }
+    .col-md-6:nth-child(2){
+      order:1;
+    }
+    .first-project div{
+      width: 100%;
+    }
     .first-project p{
+      font-size:1.2vw;
+      margin-top:1rem;
+    }
+    .first-project h1{
       font-size:2vw;
+      margin-top:0;
+    }
+    .residents{
+      margin: 3% 0% 3% 0%;
     }
   }
-  @media(max-width:720px){
+  @media(max-width:1040px){
     .first-project p{
+      font-size:1.7vw;
+      margin-top:1rem;
+    }
+    .first-project h1{
+      font-size:2.3vw;
+    }
+  }
+  @media(max-width:859px){
+    .first-project h1{
       font-size:2.4vw;
     }
-  }
-  @media(max-width:584px){
     .first-project p{
+      font-size:2.33vw;
+    }
+  }
+  @media(max-width:724px){
+    .first-project h1{
+      font-size:2.6vw;
+    }
+  }
+  @media(max-width:666px){
+    .first-project h1{
       font-size:3vw;
     }
   }
-  @media(max-width:454px){
+  @media(max-width:596px){
+    .first-project h1{
+      font-size:3.2vw;
+    }
     .first-project p{
-      font-size:4.5vw;
+      font-size:2.5vw;
+    }
+  }
+  @media(max-width:550px){
+    .first-project h1{
+      font-size:5vw;
+    }
+    .first-project p{
+      font-size:4vw;
     }
   }
   .next-projects{
@@ -151,7 +196,7 @@
       font-size:2.1vw;
     }
   }
-  @media(max-width:720px){
+  @media(max-width:768px){
     .card-body a, .residents a{
       font-size:2.3vw;
     }

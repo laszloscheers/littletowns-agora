@@ -1,81 +1,149 @@
 <style>
+  .carousel-item img{
+      height: 27vw !important;
+  }
   .left {
     position: absolute;
     top: 50%;
-    left: 20%;
+    left: 25%;
     transform: translate(-50%, -50%);
     color: white;
   }
   .left2 {
     position: absolute;
     top: 50%;
-    left: 33%;
+    left: 29%;
     transform: translate(-50%, -50%);
     color: white;
   }
   .left3 {
     position: absolute;
     top: 28%;
-    left: 35%;
+    left: 39%;
     transform: translate(-50%, -50%);
     color: white;
   }
   .carousel-title{
     font-size:2.3vw;
+    margin-bottom: 1rem;
   }
   .carousel-text{
-    font-size:1.4vw;
+    font-size:1.45vw;
   }
-  @media(max-width:815px){
+  .carousel-body{
+    padding: 0 0 0 1rem;
+  }
+  @media(max-width:1391px){
       .carousel-item img{
-          height: 85vw !important;
+          height: 40vw !important;
       }
       .carousel-title{
-        font-size:6vw;
-        padding-top:3%;
+        font-size:3vw;
+        margin-bottom: 2rem;
       }
       .carousel-text{
-        font-size:4vw;
+        font-size:2vw;
       }
-      .carousel-body{
-        color: #f8f9fa;
-        font-weight: bold;
+  }
+  @media(max-width:831px){
+      .carousel-item img{
+          height: 70vw !important;
+      }
+      .carousel-title{
+        font-size:5.5vw;
+        padding-top:10%;
+        margin-bottom: 2rem;
+      }
+      .carousel-text{
+        font-size:3vw;
       }
       .carousel-card{
         width: 60vw !important;
         height: 75vw !important;
       }
       .left {
-        left: 33%;
+        left: 35%;
+        top: 68%;
       }
       .left2 {
-        top: 60%;
+        top: 75% !important;
+        left: 40% !important;
       }
       .left3 {
-        top: 50%;
+        top: 60% !important;
+        left: 36% !important;
+      }
+  }
+  @media(max-width:576px){
+      .carousel-item img{
+          height: 100vw !important;
+      }
+      .carousel-title{
+        font-size:7vw;
+        margin-bottom: 1rem;
+      }
+      .carousel-text{
+        font-size:4.3vw;
+      }
+      .left {
+        left: 35%;
+        top: 45%;
+      }
+      .left2 {
+        top: 55% !important;
+        left: 35% !important;
+      }
+      .left3 {
+        top: 40% !important;
+        left: 39% !important;
       }
   }
   .jumbotron{
-    margin: 3% 0% 1% 0%;
+    margin: 4% 0% 1% 0%;
   }
   .jumbotron h1{
     font-size:3vw;
     font-weight: bold;
     color: #18654e;
+    margin-bottom: 1rem;
 
   }
   .jumbotron p{
     font-size:1.2vw;
   }
-  @media(max-width:815px){
+  @media(max-width:1391px){
       .jumbotron{
-        margin: 8% 0% 0% 0%;
+        margin: 5% 0% 0% 0%;
       }
       .jumbotron h1{
-        font-size:7vw;
+        font-size:3.6vw;
       }
       .jumbotron p{
-        font-size:4vw;
+        font-size:2.5vw;
+        margin: 0% 15% 0% 15%;
+      }
+  }
+  @media(max-width:831px){
+      .jumbotron{
+        margin: 8% 0% 5% 0%;
+      }
+      .jumbotron h1{
+        font-size:6vw;
+      }
+      .jumbotron p{
+        font-size:3.6vw;
+        margin: 0% 15% 0% 15%;
+      }
+  }
+  @media(max-width:576px){
+      .jumbotron{
+        margin: 15% 0% 1% 0%;
+      }
+      .jumbotron h1{
+        font-size:7.5vw;
+      }
+      .jumbotron p{
+        font-size:4.7vw;
         margin: 0% 15% 0% 15%;
       }
   }
@@ -98,10 +166,11 @@
     --bs-gutter-x: 0;
     margin-top: 3%;
   }
-  .col-md-6{
+  .col-lg-6{
     background-color: #f2f2f2;
   }
-  .col-md-6 img{
+
+  .col-lg-6 img{
     height: 100%;
     width: 100%;
   }
@@ -114,7 +183,7 @@
     color: #18654e;
   }
   .residents p{
-    font-size:1vw;
+    font-size:1.3vw;
     margin: 5% 30% 1% 0%;
   }
   @media(max-width:1391px){
@@ -128,22 +197,34 @@
       padding: 9% 7% 15% 15%;
     }
   }
-  @media(max-width:767px){
+  @media(max-width:991px){
+    .residents{
+      padding: 8% 20% 7% 20%;
+    }
+    .col-lg-6:first-child{
+      order:2;
+    }
+    .col-lg-6:nth-child(2){
+      order:1
+    }
+    .residents h1{
+      font-size:4vw;
+    }
+    .residents p{
+      margin: 5% 10% 5% 0%;
+      font-size:2.6vw;
+    }
+  }
+  @media(max-width:576px){
+    .residents{
+      padding: 12% 10% 10% 10%;
+    }
     .residents h1{
       font-size:7vw;
     }
     .residents p{
-      font-size:4.3vw;
-      margin: 5% 15% 5% 0%;
-    }
-    .row:first-child{
-      order: 2;
-    }
-    .row:nth-child(2){
-      order: 1;
-    }
-    .residents{
-      padding: 9% 7% 15% 15%;
+      margin: 5% 10% 5% 0%;
+      font-size:4vw;
     }
   }
 </style>
@@ -156,7 +237,7 @@
         <source 
           class="d-block w-100 img-fluid" 
           style="width:100%; height:auto;"
-          media="(min-width: 816px)"
+          media="(min-width: 831px)"
           srcset="./home_hero.jpg">
 
         <source
@@ -171,7 +252,7 @@
           src="./home_hero_mobile.jpg" 
           alt="Littletown's landscape photo">
       </picture>
-      <div class="card carousel-card left" style="width: 25vw;background: none !important; border:none !important">
+      <div class="card carousel-card left" style="width: 33vw;background: none !important; border:none !important">
         <div class="card-body carousel-body">
           <h5 class="card-title carousel-title">Welcome to Little Town</h5>
           <p class="card-text carousel-text">We are proud of our vibrant Little Town and its beautiful surroundings. Full of history, heritage, nature, and world-class hospitality, it’s a very special place. We are eager to welcome you.</p>
@@ -183,7 +264,7 @@
         <source 
           class="d-block w-100 img-fluid" 
           style="width:100%; height:auto;"
-          media="(min-width: 816px)"
+          media="(min-width: 831px)"
           srcset="./tourist_guide_hero.jpg">
 
         <source
@@ -198,7 +279,7 @@
           src="./tourist_guide_hero_mobile.jpg" 
           alt="Littletown's landscape photo">
       </picture>
-      <div class="card carousel-card left2" style="width: 25vw;background: none !important; border:none !important">
+      <div class="card carousel-card left2" style="width: 33vw;background: none !important; border:none !important">
         <div class="card-body carousel-body">
           <h5 class="card-title carousel-title">Tourist guide</h5>
           <p class="card-text carousel-text">Whether you want to visit our historical landmarks, run wild in nature with the kids, or enjoy our markets and pubs, we have the perfect plan for you!</p>
@@ -210,7 +291,7 @@
         <source 
           class="d-block w-100 img-fluid" 
           style="width:100%; height:auto;"
-          media="(min-width: 816px)"
+          media="(min-width: 831px)"
           srcset="./stay.jpg">
 
         <source
@@ -225,7 +306,7 @@
           src="./stay_mobile.jpg" 
           alt="Littletown's landscape photo">
       </picture>
-      <div class="card carousel-card left3" style="width: 25vw;background: none !important; border:none !important">
+      <div class="card carousel-card left3" style="width: 33vw;background: none !important; border:none !important">
         <div class="card-body carousel-body">
           <h5 class="card-title carousel-title">Stay</h5>
           <p class="card-text carousel-text">Our town offers a great selection of high-quality accommodation, with options for everyone. Find luxury hotels in town, lovely countryside spots, and modern hostels.</p>
@@ -276,10 +357,10 @@
 <!-- End Cards -->
 
 <div class="row">
-    <div class="col-md-6 p-0">
+    <div class="col-lg-6 p-0">
       <img src="./home_lower_image.jpg" class="img-fluid"/>
     </div>
-    <div class="col-md-6 p-0">
+    <div class="col-lg-6 p-0">
       <div class="residents">
         <h1>Area for residents</h1>
         <p>We encourage you to check out the latest news and projects of our Little Town, and to participate in our Forum discussion. This area is reserved for residents only.</p>
