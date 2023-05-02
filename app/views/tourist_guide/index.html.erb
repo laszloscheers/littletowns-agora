@@ -6,41 +6,67 @@
   .left {
     position: absolute;
     top: 40%;
-    left: 36%;
+    left: 26%;
     transform: translate(-50%, -50%);
     color: white;
   }
   .carousel-title{
     font-size:2.3vw;
+    margin-bottom: 1rem;
   }
   .carousel-text{
     font-size:1.4vw;
   }
-  @media(max-width:815px){
-    .left {
-        top: 50%;
-        left: 32% !important;
-    }
+  @media(max-width:1391px){
+      .carousel-item img{
+          height: 40vw !important;
+      }
+      .carousel-title{
+        font-size:3vw;
+        margin-bottom: 2rem;
+      }
+      .carousel-text{
+        font-size:2vw;
+      }
+  }
+  @media(max-width:831px){
+      .left {
+          top: 50%;
+          left: 32% !important;
+      }
       .carousel-item img{
           height: 75vw !important;
       }
       .carousel-title{
-        font-size:7vw;
+        font-size:5.5vw;
         padding-top:3%;
       }
       .carousel-text{
-        font-size:4.3vw;
-      }
-      .carousel-body{
-        color: #f8f9fa;
-        font-weight: bold;
+        font-size:3vw;
       }
       .carousel-card{
         width: 60vw !important;
         height: 75vw !important;
       }
       .left {
-        left: 25%;
+        top: 75% !important;
+        left: 40% !important;
+      }
+  }
+  @media(max-width:576px){
+      .carousel-item img{
+          height: 100vw !important;
+      }
+      .carousel-title{
+        font-size:7vw;
+        margin-bottom: 1rem;
+      }
+      .carousel-text{
+        font-size:4.3vw;
+      }
+      .left {
+        top: 50% !important;
+        left: 40% !important;
       }
   }
   .jumbotron{
@@ -55,15 +81,39 @@
   .jumbotron p{
     font-size:1.2vw;
   }
-  @media(max-width:815px){
+  @media(max-width:1391px){
       .jumbotron{
-        margin: 8% 0% 0% 0%;
+        margin: 8% 0% 4% 0%;
+      }
+      .jumbotron h1{
+        font-size:3.6vw;
+      }
+      .jumbotron p{
+        font-size:2.5vw;
+        margin: 0% 15% 0% 15%;
+      }
+  }
+  @media(max-width:831px){
+      .jumbotron{
+        margin: 5% 0% 5% 0%;
       }
       .jumbotron h1{
         font-size:7vw;
       }
       .jumbotron p{
-        font-size:4vw;
+        font-size:3.6vw;
+        margin: 0% 15% 0% 15%;
+      }
+  }
+  @media(max-width:576px){
+      .jumbotron{
+        margin: 15% 0% 1% 0%;
+      }
+      .jumbotron h1{
+        font-size:7.5vw;
+      }
+      .jumbotron p{
+        font-size:4.7vw;
         margin: 0% 15% 0% 15%;
       }
   }
@@ -75,6 +125,12 @@
     background-color: #18654e;
     color:#ffff;
   }
+    @media(max-width:831px){
+      .btn{
+        margin-bottom: 2rem;
+      }
+  }
+
   .btn:hover{
     background-color: #ffff;
     color:#18654e;
@@ -94,7 +150,7 @@
         <source 
           class="d-block w-100 img-fluid" 
           style="width:100%; height:auto;"
-          media="(min-width: 816px)"
+          media="(min-width: 831px)"
           srcset="../tourist_guide_hero.jpg">
 
         <source
@@ -109,7 +165,7 @@
           src="../tourist_guide_hero_mobile.jpg" 
           alt="Littletown's landscape photo">
       </picture>
-      <div class="card carousel-card left" style="width: 25vw;background: none !important; border:none !important">
+      <div class="card carousel-card left" style="width: 35vw;background: none !important; border:none !important">
         <div class="card-body carousel-body">
           <h5 class="card-title carousel-title">Tourist guide</h5>
           <p class="card-text carousel-text">Whether you want to visit our historical landmarks, run wild in nature with the kids, or enjoy our markets and pubs, we have the perfect plan for you!</p>
@@ -147,11 +203,11 @@
     </div>
     <% if @tourist_guide_items.count > 3 %> 
       <div class="d-flex justify-content-center mt-5">
-          <button class="btn" style="width:80%;" type="button" data-bs-toggle="collapse" data-bs-target=".collapse1" aria-controls="collapseExample" aria-expanded="false" aria-label="Toggle cards">
-              Load More
+          <button class="btn" type="button" data-bs-toggle="collapse" data-bs-target=".collapse1" aria-controls="collapseExample" aria-expanded="false" aria-label="Toggle cards">
+              More
           </button>
       </div>
-      <div class="collapse collapse1 mt-5">
+      <div class="collapse collapse1">
           <div class="d-flex justify-content-center flex-wrap">
             <% @tourist_guide_items.slice(3, @tourist_guide_items.count-3).each do |item| %>
               <div class="card m-5" style="width: 18rem;">
@@ -206,7 +262,7 @@
 <!-- End Restaurants and pubs -->
 
 <!-- Jumbotron for Maps -->
-<div class="text-center jumbotron mb-5">
+<div class="text-center jumbotron">
     <h1>Find your way</h1>
     <br />
     <p>Use the map below to locate our town’s experiences, restaurants and pubs.</p>
@@ -215,7 +271,7 @@
 <div id="map"></div>
 
 <script>
-    var map = L.map('map', {gestureHandling: true}).setView([53.273665, -6.854582], 15);
+    var map = L.map('map', {gestureHandling: true}).setView([53.273665, -6.854582], 14);
 </script>
 
 <script>
