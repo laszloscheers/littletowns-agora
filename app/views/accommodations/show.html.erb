@@ -1,0 +1,153 @@
+<style>
+  .latest-projects-content{
+    margin: 0% 15% 0% 15%;
+  }
+  @media(max-width:1040px){
+    .latest-projects-content{
+      margin: 0% 7% 0% 7%;
+    }
+  }
+  a{
+    text-decoration: none;
+    color: #18654e;
+  }
+  a:hover{
+    color: #ffc107;
+  }
+  .first-project{
+    margin: 4% 0% 5% 0%;
+    background-color: white;
+    width: 100%;
+  }
+  .first-project img{
+    width: 100%;
+    height: 100%;
+  }
+  .residents{
+    margin: 7% 0% 7% 0%;
+  }
+  .first-project h1{
+    margin: 5% 0% 0% 5%;
+  }
+  .first-project p:first-child{
+    color: rgba(0, 0, 0, 0.55);
+  }
+  .first-project p{
+    font-size:0.9vw;
+    margin: 5% 10% 0% 5%;
+  }
+  .breadcrum{
+    font-size:0.9vw;
+  }
+  .first-project a{
+    margin-left: 5%;
+  }
+  @media(max-width:1622px){
+    .first-project p, .breadcrum{
+      font-size:1.3vw;
+    }
+  }
+  @media(max-width:1228px){
+    .first-project p, .breadcrum{
+      font-size:1.5vw;
+    }
+  }
+  @media(max-width:1199px){
+    .first-project img{
+      margin-left: 5%;
+      padding-right: 5%;
+    }
+  }
+  @media(max-width:991px){
+    .first-project p, .breadcrum{
+      font-size:2vw;
+    }
+  }
+  @media(max-width:720px){
+    .first-project p, .breadcrum{
+      font-size:2.4vw;
+    }
+  }
+  @media(max-width:584px){
+    .first-project p, .breadcrum{
+      font-size:3vw;
+    }
+  }
+  @media(max-width:454px){
+    .first-project p, .breadcrum{
+      font-size:4.5vw;
+    }
+  }
+  .jumbotron{
+    margin: 5% 0% 1% 0%;
+  }
+  .jumbotron h3{
+    font-size:1.8vw;
+    font-weight: bold;
+    color: rgba(0, 0, 0, 0.55);
+    text-align: left;
+
+  }
+
+  @media(max-width:815px){
+      .jumbotron{
+        margin: 8% 0% 0% 0%;
+      }
+      .jumbotron h3{
+        font-size:5vw;
+      }
+  }
+  #map {
+      height: 600px;
+      width: 100%;
+      margin-bottom: 5%;
+  }
+</style>
+<div class="latest-projects-content" >
+  <!--Card for fisrt project -->
+  <div class="row first-project">
+      <div class="col-xl-6 p-0">
+        <div class="residents">
+          <div class="d-flex breadcrum">
+            <% if @business.type_of_business == "Restaurant" || @business.type_of_business == "Pub" %>
+                <%= link_to "Tourist Guide", tourist_guide_index_path %>
+            <% else %>
+                <%= link_to "Accommodations", accommodations_path %>
+            <% end %>
+            /<%= @business.title %>
+          </div>
+            <h1><%= @business.title %></h1>
+            <p><%= @business.description %></p>
+        </div>
+      </div>
+      <div class="col-xl-6 p-0">
+        <%= image_tag(@business.image, class: "image-fluid", alt: @business.title) %>
+      </div>
+  </div>
+  <hr/>
+  <!-- Card for fisrt project -->
+  <!-- Jumbotron for Maps -->
+  <div class="text-center jumbotron mb-5">
+      <h3>How to get there</h3>
+  </div>
+  <!--End Jumbotron -->
+  <div id="map"></div>
+</div>
+
+
+<script>
+    var map = L.map('map', {gestureHandling: true}).setView(['<%= @business.latitude %>', '<%= @business.longitude %>'], 15);
+</script>
+
+<script>
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+    var greenIcon = L.icon({
+        iconUrl: '../location.png',
+        iconSize:     [50, 50], // size of the icon
+        popupAnchor:  [0, -25] // point from which the popup should open relative to the iconAnchor
+    });
+    L.marker(['<%= @business.latitude %>', '<%= @business.longitude %>'], {icon: greenIcon}).addTo(map).bindPopup('<h5><%= @business.title %></h5>');
+
+</script>

@@ -1,0 +1,179 @@
+<style>
+  #map {
+      height: 600px;
+      width: 100%;
+  }
+  .left {
+    position: absolute;
+    top: 28%;
+    left: 35%;
+    transform: translate(-50%, -50%);
+    color: white;
+  }
+  .carousel-title{
+    font-size:2.3vw;
+  }
+  .carousel-text{
+    font-size:1.4vw;
+  }
+  @media(max-width:815px){
+    .left {
+        top: 50%;
+        left: 40% !important;
+    }
+      .carousel-item img{
+          height: 75vw !important;
+      }
+      .carousel-title{
+        font-size:7vw;
+        padding-top:3%;
+      }
+      .carousel-text{
+        font-size:4.3vw;
+      }
+      .carousel-body{
+        color: #f8f9fa;
+        font-weight: bold;
+      }
+      .carousel-card{
+        width: 60vw !important;
+        height: 75vw !important;
+      }
+      .left {
+        left: 25%;
+      }
+  }
+  .jumbotron{
+    margin: 3% 0% 1% 0%;
+  }
+  .jumbotron h1{
+    font-size:2.7vw;
+    font-weight: bold;
+    color: #18654e;
+
+  }
+  .jumbotron p{
+    font-size:1.2vw;
+  }
+  @media(max-width:815px){
+      .jumbotron{
+        margin: 8% 0% 0% 0%;
+      }
+      .jumbotron h1{
+        font-size:7vw;
+      }
+      .jumbotron p{
+        font-size:4vw;
+        margin: 0% 15% 0% 15%;
+      }
+  }
+  .btn{
+    border-style: solid;
+    border-radius: 5px;
+    border-width:2px;
+    border-color: #18654e;
+    background-color: #18654e;
+    color: #ffff;
+  }
+  .btn:hover{
+    background-color: #ffff;
+    color: #18654e;
+  }
+  .card-container{
+    margin: 7% 10% 7% 10%;
+    padding-top:3%;
+  }
+  @media(max-width:815px){
+    .card-container{
+      margin: 7% 0% 7% 0%;
+    }
+  }
+</style>
+
+<!-- Hero Block -->
+<div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel" data-bs-interval="7000">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <picture>
+        <source 
+          class="d-block w-100 img-fluid" 
+          style="width:100%; height:auto;"
+          media="(min-width: 816px)"
+          srcset="../stay.jpg">
+
+        <source
+          class="d-block w-100 img-fluid" 
+          style="width:100%; height:auto;"
+          media="(min-width: 465px)"
+          srcset="../stay_tablet.jpg">
+
+        <img 
+          class="d-block w-100 img-fluid"
+          style="width:100%; height:auto;"
+          src="../stay_mobile.jpg" 
+          alt="Littletown's landscape photo">
+      </picture>
+      <div class="card carousel-card left" style="width: 25vw;background: none !important; border:none !important">
+        <div class="card-body carousel-body">
+          <h5 class="card-title carousel-title">Stay</h5>
+          <p class="card-text carousel-text">Our town offers a great selection of high-quality accommodation, with options for everyone. Find luxury hotels in town, lovely countryside spots, and modern hostels.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End Hero Block -->
+<!-- Cards for Tourist Guide Items -->
+<div class="card-container mt-5">
+        <div class="d-flex justify-content-center flex-wrap">
+            <% @businesses.each do |business| %>
+              <% if business.type_of_business == "Accommodation" %>
+                <div class="card m-5" style="width: 18rem;">
+                  <%= image_tag(business.image, class: "card-img-top image-fluid", alt: business.title) %>
+                  <div class="card-body">
+                    <h5 class="card-title"><%= business.title %></h5>
+                    <p class="card-text"><%= business.description %></p>
+                    <div class="d-flex">
+                      <%= link_to "Show", accommodation_path(business), class: "btn mx-1" %>
+                    </div>
+                  </div>
+                </div>
+              <% end %>
+            <% end %>
+        </div>
+</div>
+<!-- End Cards -->
+
+<!-- Jumbotron for Maps -->
+<div class="text-center jumbotron mb-5">
+    <h1>Find your way</h1>
+    <br />
+    <p>Use the map below to locate our town’s accommodations.</p>
+</div>
+<!--End Jumbotron -->
+<div id="map"></div>
+
+<script>
+    var map = L.map('map', {gestureHandling: true}).setView([53.273665, -6.854582], 15);
+</script>
+
+<script>
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+    var greenIcon = L.icon({
+        iconUrl: '../location.png',
+        iconSize:     [50, 50], // size of the icon
+        popupAnchor:  [0, -25] // point from which the popup should open relative to the iconAnchor
+    });
+    L.marker([51.5, -0.09], {icon: greenIcon}).addTo(map).bindPopup('A pretty CSS3 popup.<br> Easily customizable.');
+
+</script>
+
+<% @businesses.each do |business| %>
+  <% if business.type_of_business == "Accommodation" %>
+    <script>
+        L.marker(['<%= business.latitude %>', '<%= business.longitude %>'], {icon: greenIcon}).addTo(map).bindPopup('<h5><%= link_to accommodation_path(business) do %><%= business.title %><% end %></h5>');
+    </script>
+  <% end %>
+<% end %>

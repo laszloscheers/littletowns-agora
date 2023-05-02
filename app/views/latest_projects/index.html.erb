@@ -1,0 +1,238 @@
+<style>
+  body{
+    background-color: #ede7dc;
+  }
+  .latest-projects-content{
+    margin: 0% 15% 0% 15%;
+  }
+  @media(max-width:1040px){
+    .latest-projects-content{
+      margin: 0% 7% 0% 7%;
+    }
+  }
+  .jumbotron{
+    margin: 5% 0% 1% 0%;
+  }
+  .jumbotron h1{
+    font-size:2.3vw;
+    font-weight: bold;
+    color: #18654e;
+  }
+  .jumbotron p{
+    font-size:1.2vw;
+    margin-right: 45%;
+  }
+  @media(max-width:1462px){
+  .jumbotron{
+    margin: 10% 0% 7% 0%;
+  }
+    .jumbotron h1{
+      font-size:3vw;
+    }
+    .jumbotron p{
+      font-size:1.5vw;
+    }
+  }
+  @media(max-width:991px){
+    .jumbotron h1{
+      font-size:5vw;
+    }
+    .jumbotron p{
+      font-size:2.1vw;
+    }
+  }
+  @media(max-width:672px){
+    .jumbotron h1{
+      font-size:7vw;
+    }
+    .jumbotron p{
+      font-size:3vw;
+    }
+  }
+  @media(max-width:454px){
+    .jumbotron h1{
+      font-size:9vw;
+    }
+    .jumbotron p{
+      font-size:4.5vw;
+    }
+  }
+  .first-project{
+    margin: 4% 0% 1% 0%;
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    border-radius: 0.25rem;
+    background-color: white;
+    width: 100%;
+  }
+  .residents{
+    margin: 7% 0% 7% 0%;
+  }
+  .first-project h1{
+    margin: 5% 0% 0% 5%;
+  }
+  .first-project p:first-child{
+    color: rgba(0, 0, 0, 0.55);
+  }
+  .first-project p{
+    margin: 5% 15% 3% 5%;
+    font-size:0.9vw;
+  }
+  .first-project a{
+    margin-left: 5%;
+  }
+  .image-fluid{
+    width: 100%;
+  }
+  @media(max-width:1622px){
+    .first-project p{
+      font-size:1.3vw;
+    }
+  }
+  @media(max-width:1228px){
+    .first-project p{
+      font-size:1.5vw;
+    }
+  }
+  @media(max-width:991px){
+    .first-project p{
+      font-size:2vw;
+    }
+  }
+  @media(max-width:720px){
+    .first-project p{
+      font-size:2.4vw;
+    }
+  }
+  @media(max-width:584px){
+    .first-project p{
+      font-size:3vw;
+    }
+  }
+  @media(max-width:454px){
+    .first-project p{
+      font-size:4.5vw;
+    }
+  }
+  .next-projects{
+    margin: 5% 0% 5% 0%;
+  }
+  @media(max-width:1371px){
+      .card{
+        width: 100% !important;
+        margin-right: 0% !important;
+      }
+  }
+  .card-body{
+    margin: 3% 0% 0% 3%;
+  }
+  .card-body p:first-child{
+    color: rgba(0, 0, 0, 0.55);
+  }
+  .card-body a, .residents a{
+    text-decoration: none;
+    color: #18654e;
+    font-size:0.9vw;
+  }
+  .card-body a:hover, .residents a:hover{
+    color: #ffc107;
+  }
+  @media(max-width:1622px){
+    .card-body a, .residents a{
+      font-size:1.3vw;
+    }
+  }
+  @media(max-width:1242px){
+    .card-body a, .residents a{
+      font-size:1.5vw;
+    }
+  }
+  @media(max-width:991px){
+    .card-body a, .residents a{
+      font-size:2.1vw;
+    }
+  }
+  @media(max-width:720px){
+    .card-body a, .residents a{
+      font-size:2.3vw;
+    }
+  }
+  @media(max-width:578px){
+    .card-body a, .residents a{
+      font-size:2.7vw;
+    }
+  }
+  @media(max-width:454px){
+    .card-body a, .residents a{
+      font-size:5vw;
+    }
+  }
+</style>
+
+<div class="latest-projects-content" >
+
+  <!-- Jumbotron for Latest Projects -->
+  <div class="text-left jumbotron">
+      <h1>Latest Projects</h1>
+      <br />
+      <p>Discover the latest news from Little Town, from upcoming events to new developments and changes happening in our town.</p>
+  </div>
+  <!--End Jumbotron -->
+
+  <!--Card for fisrt project -->
+  <% @projects.first(1).each do |project| %>
+    <div class="row first-project">
+        <div class="col-md-6 p-0">
+          <%= image_tag(project.image, class: "image-fluid", alt: project.title) %>
+        </div>
+        <div class="col-md-6 p-0">
+          <div class="residents">
+            <p><%= project.created_at.mday %>/<%= project.created_at.month %>/<%= project.created_at.year %></p>
+            <h1><%= project.title %></h1>
+            <p><%= project.description %></p>
+            <%= link_to "Read more", latest_project_path(project) %>
+          </div>
+        </div>
+    </div>
+  <% end %>
+  <!-- Card for fisrt project -->
+
+  <!-- Cards for next projects -->
+  <div class="card-container next-projects">
+      <div class="d-flex flex-wrap">
+          <% @projects.slice(1,4).each do |project| %>
+            <div class="card me-5 mb-5" style="width: 45%;">
+              <div class="card-body">
+                <p><%= project.created_at.mday %>/<%= project.created_at.month %>/<%= project.created_at.year %></p>
+                <h5 class="card-title"><%= project.title %></h5>
+                <p class="card-text"><%= project.description %></p>
+                <%= link_to "Read more", latest_project_path(project) %>
+              </div>
+              <%= image_tag(project.image, class: "card-img-top img-fluid", alt: project.title) %>
+            </div>
+          <% end %>
+      </div>
+  </div>
+  <!-- End Cards for next projects -->
+    <% if @projects.count > 5 %> 
+      <div class="d-flex justify-content-center my-5 btn-posts">
+          <button class="btn btn-edit" style="width:100%;" type="button" data-bs-toggle="collapse" data-bs-target=".collapse" aria-controls="collapseExample" aria-expanded="false" aria-label="Toggle cards">
+              Load More
+          </button>
+      </div>
+      <div class="collapse card-container next-projects">
+          <div class="d-flex flex-wrap">
+            <% @projects.slice(4, @projects.count-4).each do |project| %>
+              <div class="card me-5 mb-5" style="width: 45%;">
+                <div class="card-body">
+                  <p><%= project.created_at.mday %>/<%= project.created_at.month %>/<%= project.created_at.year %></p>
+                  <h5 class="card-title"><%= project.title %></h5>
+                  <p class="card-text"><%= project.description %></p>
+                  <%= link_to "Read more", latest_project_path(project) %>
+                </div>
+                <%= image_tag(project.image, class: "card-img-top img-fluid", alt: project.title) %>
+              </div>
+            <% end %>
+          </div>
+      </div>
+    <% end %>
+</div>
