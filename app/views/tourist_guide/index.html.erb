@@ -58,11 +58,11 @@
           height: 100vw !important;
       }
       .carousel-title{
-        font-size:7vw;
-        margin-bottom: 1rem;
+        font-size:8vw;
+        margin-bottom: 0.8rem;
       }
       .carousel-text{
-        font-size:4.3vw;
+        font-size:5vw;
       }
       .left {
         top: 50% !important;
@@ -107,10 +107,10 @@
   }
   @media(max-width:576px){
       .jumbotron{
-        margin: 15% 0% 1% 0%;
+        margin: 12% 0% 5% 0%;
       }
       .jumbotron h1{
-        font-size:7.5vw;
+        font-size:8vw;
       }
       .jumbotron p{
         font-size:4.7vw;
@@ -125,12 +125,18 @@
     background-color: #18654e;
     color:#ffff;
   }
-    @media(max-width:831px){
-      .btn{
-        margin-bottom: 2rem;
-      }
+  .btn-img{
+    transition: all .2s ease-in-out;
   }
-
+  .btn-img:hover{
+    transform: scale(1.04);
+    transition: all .2s ease-in-out;
+  }
+  @media(max-width:831px){
+    .btn{
+      margin-bottom: 2rem;
+    }
+  }
   .btn:hover{
     background-color: #ffff;
     color:#18654e;
@@ -190,7 +196,7 @@
     <div class="d-flex justify-content-center flex-wrap">
         <% @tourist_guide_items.first(3).each do |item| %>
           <div class="card m-5" style="width: 18rem;">
-            <%= image_tag(item.image, class: "card-img-top image-fluid", alt: item.title) %>
+            <%= link_to tourist_guide_path(item), class: "btn-img" do %><%= image_tag(item.image, class: "card-img-top image-fluid", alt: item.title) %><% end %>
             <div class="card-body">
               <h5 class="card-title"><%= item.title %></h5>
               <p class="card-text"><%= item.description %></p>
@@ -211,7 +217,7 @@
           <div class="d-flex justify-content-center flex-wrap">
             <% @tourist_guide_items.slice(3, @tourist_guide_items.count-3).each do |item| %>
               <div class="card m-5" style="width: 18rem;">
-                <%= image_tag(item.image, class: "card-img-top image-fluid", alt: item.title) %>
+                <%= link_to tourist_guide_path(item), class: "btn-img" do %><%= image_tag(item.image, class: "card-img-top image-fluid", alt: item.title) %> <% end %>
                 <div class="card-body">
                   <h5 class="card-title"><%= item.title %></h5>
                   <p class="card-text"><%= item.description %></p>
@@ -244,7 +250,7 @@
             <% @businesses.each do |business| %>
               <% if business.type_of_business != "Accommodation" %>
                 <div class="card m-5" style="width: 18rem;">
-                  <%= image_tag(business.image, class: "card-img-top image-fluid", alt: business.title) %>
+                  <%= link_to accommodation_path(business), class: "btn-img" do %><%= image_tag(business.image, class: "card-img-top image-fluid", alt: business.title) %><% end %>
                   <div class="card-body">
                     <h5 class="card-title"><%= business.title %></h5>
                     <p class="card-text"><%= business.description %></p>
@@ -265,7 +271,7 @@
 <div class="text-center jumbotron">
     <h1>Find your way</h1>
     <br />
-    <p>Use the map below to locate our town’s experiences, restaurants and pubs.</p>
+    <p>Use the map below to locate our town's experiences, restaurants and pubs.</p>
 </div>
 <!--End Jumbotron -->
 <div id="map"></div>

@@ -83,15 +83,21 @@
         margin-bottom: 1rem;
       }
       .carousel-text{
-        font-size:4.3vw;
+        font-size:4.4vw;
+      }
+      .carousel-title-tourist{
+        font-size:8vw;
+      }
+      .carousel-text-tourist{
+        font-size:5vw;
       }
       .left {
         left: 35%;
         top: 45%;
       }
       .left2 {
-        top: 55% !important;
-        left: 35% !important;
+        top: 47% !important;
+        left: 40% !important;
       }
       .left3 {
         top: 40% !important;
@@ -99,7 +105,7 @@
       }
   }
   .jumbotron{
-    margin: 4% 0% 1% 0%;
+    margin: 4% 0% 0% 0%;
   }
   .jumbotron h1{
     font-size:3vw;
@@ -110,6 +116,7 @@
   }
   .jumbotron p{
     font-size:1.2vw;
+    margin-bottom: 0;
   }
   @media(max-width:1391px){
       .jumbotron{
@@ -137,10 +144,10 @@
   }
   @media(max-width:576px){
       .jumbotron{
-        margin: 15% 0% 1% 0%;
+        margin: 12% 0% 5% 0%;
       }
       .jumbotron h1{
-        font-size:7.5vw;
+        font-size:8vw;
       }
       .jumbotron p{
         font-size:4.7vw;
@@ -158,6 +165,22 @@
   .btn:hover{
     background-color: #ffff;
     color:#18654e;
+  }
+  .btn-carousel{
+    text-decoration: none;
+    color:#ffff;
+  }
+  .btn-carousel:hover{
+    color:#ffc107;
+    transform: scale(1.2);
+    transition: none;
+  }
+  .btn-img{
+    transition: all .2s ease-in-out;
+  }
+  .btn-img:hover{
+    transform: scale(1.04);
+    transition: all .2s ease-in-out;
   }
   .card-container{
     margin-bottom: 4%;
@@ -220,7 +243,7 @@
       padding: 12% 10% 10% 10%;
     }
     .residents h1{
-      font-size:7vw;
+      font-size:8vw;
     }
     .residents p{
       margin: 5% 10% 5% 0%;
@@ -255,7 +278,7 @@
       <div class="card carousel-card left" style="width: 33vw;background: none !important; border:none !important">
         <div class="card-body carousel-body">
           <h5 class="card-title carousel-title">Welcome to Little Town</h5>
-          <p class="card-text carousel-text">We are proud of our vibrant Little Town and its beautiful surroundings. Full of history, heritage, nature, and world-class hospitality, it’s a very special place. We are eager to welcome you.</p>
+          <p class="card-text carousel-text">We are proud of our vibrant Little Town and its beautiful surroundings. Full of history, heritage, nature, and world-class hospitality, it's a very special place. We are eager to welcome you.</p>
         </div>
       </div>
     </div>
@@ -281,8 +304,8 @@
       </picture>
       <div class="card carousel-card left2" style="width: 33vw;background: none !important; border:none !important">
         <div class="card-body carousel-body">
-          <h5 class="card-title carousel-title">Tourist guide</h5>
-          <p class="card-text carousel-text">Whether you want to visit our historical landmarks, run wild in nature with the kids, or enjoy our markets and pubs, we have the perfect plan for you!</p>
+          <h5 class="card-title carousel-title carousel-title-tourist"><%= link_to "Tourist guide", tourist_guide_index_path(anchor: "tourist-guide-items"), class: "btn-carousel" %></h5>
+          <p class="card-text carousel-text carousel-text-tourist">Whether you want to visit our historical landmarks, run wild in nature with the kids, or enjoy our markets and pubs, we have the perfect plan for you!</p>
         </div>
       </div>
     </div>
@@ -308,7 +331,7 @@
       </picture>
       <div class="card carousel-card left3" style="width: 33vw;background: none !important; border:none !important">
         <div class="card-body carousel-body">
-          <h5 class="card-title carousel-title">Stay</h5>
+          <h5 class="card-title carousel-title"><%= link_to "Stay", tourist_guide_index_path(anchor: "tourist-guide-items"), class: "btn-carousel" %></h5>
           <p class="card-text carousel-text">Our town offers a great selection of high-quality accommodation, with options for everyone. Find luxury hotels in town, lovely countryside spots, and modern hostels.</p>
         </div>
       </div>
@@ -321,7 +344,7 @@
 <div class="text-center jumbotron">
     <h1>Planning your visit?</h1>
     <br />
-    <p>Discover our town’s favorite landmarks, restaurants and pubs.</p>
+    <p>Discover our town's favorite landmarks, restaurants and pubs.</p>
 </div>
 <!--End Jumbotron -->
 
@@ -329,7 +352,7 @@
 <div class="card-container">
     <div class="d-flex justify-content-center flex-wrap">
         <div class="card m-5" style="width: 20rem;">
-          <img class="card-img-top img-fluid" src="./home_columns_1.jpg" alt="Card image cap">
+          <%= link_to tourist_guide_index_path(anchor: "tourist-guide-items"), class: "btn-img" do %><img class="card-img-top img-fluid" src="./home_columns_1.jpg" alt="Card image cap"> <% end%>
           <div class="card-body">
             <h5 class="card-title">Things to see and do</h5>
             <p class="card-text">Outdoor activities, cultural activities, markets, tours, activities for families, and more.</p>
@@ -337,7 +360,7 @@
           </div>
         </div>
         <div class="card m-5" style="width: 20rem;">
-          <img class="card-img-top img-fluid" src="./home_columns_2.jpg" alt="Card image cap">
+          <%= link_to tourist_guide_index_path(anchor: "restaurants-pubs"), class: "btn-img" do %><img class="card-img-top img-fluid" src="./home_columns_2.jpg" alt="Card image cap"> <% end%>
           <div class="card-body">
             <h5 class="card-title">Eat and drink</h5>
             <p class="card-text">Little Town is renowned for its lively bars, tasty restaurants and many live music venues.</p>
@@ -345,7 +368,7 @@
           </div>
         </div>
         <div class="card m-5" style="width: 20rem;">
-          <img class="card-img-top img-fluid" src="./home_columns_3.jpg" alt="Card image cap">
+          <%= link_to accommodations_path, class: "btn-img" do %><img class="card-img-top img-fluid" src="./home_columns_3.jpg" alt="Card image cap"> <% end%>
           <div class="card-body">
             <h5 class="card-title">Where to stay</h5>
             <p class="card-text">We enjoy a beautiful array of historical places to stay, and we are looking forward to welcoming you.</p>
