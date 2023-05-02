@@ -1,0 +1,73 @@
+<style>
+  body{
+    background-color: #ede7dc;
+  }
+  .btn{
+    border-style: solid;
+    border-radius: 5px;
+    border-width:2px;
+    border-color: #18654e;
+    background-color: #18654e;
+    color:#ffff;
+  }
+  .btn:hover{
+    background-color: #ffff;
+    color:#18654e;
+  }
+  a{
+    text-decoration: none;
+    color: #18654e;
+  }
+  a:hover{
+    color: #ffc107;
+  }
+</style>
+
+<div class=" my-5 d-flex justify-content-center">
+<div class=" px-5 pb-5 pt-4" style="width: 40rem;">
+  <div class="card  mx-5 mt-5 mb-3">
+    <div class="card-header">
+      <h2>Sign up</h2>
+    </div>
+    <div class="card-body">
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+        <%= render "devise/shared/error_messages", resource: resource %>
+        <div class="form-group">
+          <%= f.label :name %><br />
+          <%= f.text_field :name, autofocus: false, class: 'form-control', placeholder: "John" %>
+        </div>
+        <br/>
+        <div class="form-group">
+          <%= f.label :surname %><br />
+          <%= f.text_field :surname, autofocus: false, class: 'form-control', placeholder: "Doe" %>
+        </div>
+        <br/>
+        <div class="field form-group">
+          <%= f.label :email %><br />
+          <%= f.email_field :email, autofocus: false, autocomplete: "email", class: "form-control", placeholder: "example@email.com" %>
+        </div>
+        <br/>
+        <div class="field form-group">
+          <%= f.label :password %>
+          <% if @minimum_password_length %>
+          <em>(<%= @minimum_password_length %> characters minimum)</em>
+          <% end %><br />
+          <%= f.password_field :password, autocomplete: "new-password", class: "form-control", placeholder: "Your password" %>
+        </div>
+        <br/>
+        <div class="field form-group">
+          <%= f.label :password_confirmation %><br />
+          <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control", placeholder: "Repeat password" %>
+        </div>
+        <br/>
+        <div class="actions">
+          <%= f.submit "Sign up", class: "btn" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <div class="ms-5">
+    <%= render "devise/shared/links" %>
+  </div>
+</div>
+</div>

@@ -1,0 +1,2 @@
+module TouristGuideItemsHelper
+end

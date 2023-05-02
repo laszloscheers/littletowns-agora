@@ -1,0 +1,290 @@
+<style>
+  .left {
+    position: absolute;
+    top: 50%;
+    left: 20%;
+    transform: translate(-50%, -50%);
+    color: white;
+  }
+  .left2 {
+    position: absolute;
+    top: 50%;
+    left: 33%;
+    transform: translate(-50%, -50%);
+    color: white;
+  }
+  .left3 {
+    position: absolute;
+    top: 28%;
+    left: 35%;
+    transform: translate(-50%, -50%);
+    color: white;
+  }
+  .carousel-title{
+    font-size:2.3vw;
+  }
+  .carousel-text{
+    font-size:1.4vw;
+  }
+  @media(max-width:815px){
+      .carousel-item img{
+          height: 85vw !important;
+      }
+      .carousel-title{
+        font-size:6vw;
+        padding-top:3%;
+      }
+      .carousel-text{
+        font-size:4vw;
+      }
+      .carousel-body{
+        color: #f8f9fa;
+        font-weight: bold;
+      }
+      .carousel-card{
+        width: 60vw !important;
+        height: 75vw !important;
+      }
+      .left {
+        left: 33%;
+      }
+      .left2 {
+        top: 60%;
+      }
+      .left3 {
+        top: 50%;
+      }
+  }
+  .jumbotron{
+    margin: 3% 0% 1% 0%;
+  }
+  .jumbotron h1{
+    font-size:3vw;
+    font-weight: bold;
+    color: #18654e;
+
+  }
+  .jumbotron p{
+    font-size:1.2vw;
+  }
+  @media(max-width:815px){
+      .jumbotron{
+        margin: 8% 0% 0% 0%;
+      }
+      .jumbotron h1{
+        font-size:7vw;
+      }
+      .jumbotron p{
+        font-size:4vw;
+        margin: 0% 15% 0% 15%;
+      }
+  }
+  .btn{
+    border-style: solid;
+    border-radius: 5px;
+    border-width:2px;
+    border-color: #18654e;
+    background-color: #18654e;
+    color:#ffff;
+  }
+  .btn:hover{
+    background-color: #ffff;
+    color:#18654e;
+  }
+  .card-container{
+    margin-bottom: 4%;
+  }
+  .row{
+    --bs-gutter-x: 0;
+    margin-top: 3%;
+  }
+  .col-md-6{
+    background-color: #f2f2f2;
+  }
+  .col-md-6 img{
+    height: 100%;
+    width: 100%;
+  }
+  .residents{
+    padding: 9% 7% 0% 15%;
+  }
+  .residents h1{
+    font-size:2.8vw;
+    font-weight: bold;
+    color: #18654e;
+  }
+  .residents p{
+    font-size:1vw;
+    margin: 5% 30% 1% 0%;
+  }
+  @media(max-width:1391px){
+    .residents h1{
+      font-size:3vw;
+    }
+    .residents p{
+      font-size:1.5vw;
+    }
+    .residents{
+      padding: 9% 7% 15% 15%;
+    }
+  }
+  @media(max-width:767px){
+    .residents h1{
+      font-size:7vw;
+    }
+    .residents p{
+      font-size:4.3vw;
+      margin: 5% 15% 5% 0%;
+    }
+    .row:first-child{
+      order: 2;
+    }
+    .row:nth-child(2){
+      order: 1;
+    }
+    .residents{
+      padding: 9% 7% 15% 15%;
+    }
+  }
+</style>
+
+<!-- Carousel -->
+<div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel" data-bs-interval="6000">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <picture>
+        <source 
+          class="d-block w-100 img-fluid" 
+          style="width:100%; height:auto;"
+          media="(min-width: 816px)"
+          srcset="./home_hero.jpg">
+
+        <source
+          class="d-block w-100 img-fluid" 
+          style="width:100%; height:auto;"
+          media="(min-width: 465px)"
+          srcset="./home_hero_tablet.jpg">
+
+        <img 
+          class="d-block w-100 img-fluid"
+          style="width:100%; height:auto;"
+          src="./home_hero_mobile.jpg" 
+          alt="Littletown's landscape photo">
+      </picture>
+      <div class="card carousel-card left" style="width: 25vw;background: none !important; border:none !important">
+        <div class="card-body carousel-body">
+          <h5 class="card-title carousel-title">Welcome to Little Town</h5>
+          <p class="card-text carousel-text">We are proud of our vibrant Little Town and its beautiful surroundings. Full of history, heritage, nature, and world-class hospitality, it’s a very special place. We are eager to welcome you.</p>
+        </div>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <picture>
+        <source 
+          class="d-block w-100 img-fluid" 
+          style="width:100%; height:auto;"
+          media="(min-width: 816px)"
+          srcset="./tourist_guide_hero.jpg">
+
+        <source
+          class="d-block w-100 img-fluid" 
+          style="width:100%; height:auto;"
+          media="(min-width: 465px)"
+          srcset="./tourist_guide_hero_tablet.jpg">
+
+        <img 
+          class="d-block w-100 img-fluid"
+          style="width:100%; height:auto;"
+          src="./tourist_guide_hero_mobile.jpg" 
+          alt="Littletown's landscape photo">
+      </picture>
+      <div class="card carousel-card left2" style="width: 25vw;background: none !important; border:none !important">
+        <div class="card-body carousel-body">
+          <h5 class="card-title carousel-title">Tourist guide</h5>
+          <p class="card-text carousel-text">Whether you want to visit our historical landmarks, run wild in nature with the kids, or enjoy our markets and pubs, we have the perfect plan for you!</p>
+        </div>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <picture>
+        <source 
+          class="d-block w-100 img-fluid" 
+          style="width:100%; height:auto;"
+          media="(min-width: 816px)"
+          srcset="./stay.jpg">
+
+        <source
+          class="d-block w-100 img-fluid" 
+          style="width:100%; height:auto;"
+          media="(min-width: 465px)"
+          srcset="./stay_tablet.jpg">
+
+        <img 
+          class="d-block w-100 img-fluid"
+          style="width:100%; height:auto;"
+          src="./stay_mobile.jpg" 
+          alt="Littletown's landscape photo">
+      </picture>
+      <div class="card carousel-card left3" style="width: 25vw;background: none !important; border:none !important">
+        <div class="card-body carousel-body">
+          <h5 class="card-title carousel-title">Stay</h5>
+          <p class="card-text carousel-text">Our town offers a great selection of high-quality accommodation, with options for everyone. Find luxury hotels in town, lovely countryside spots, and modern hostels.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End Carousel -->
+
+<!-- Jumbotron -->
+<div class="text-center jumbotron">
+    <h1>Planning your visit?</h1>
+    <br />
+    <p>Discover our town’s favorite landmarks, restaurants and pubs.</p>
+</div>
+<!--End Jumbotron -->
+
+<!-- Cards -->
+<div class="card-container">
+    <div class="d-flex justify-content-center flex-wrap">
+        <div class="card m-5" style="width: 20rem;">
+          <img class="card-img-top img-fluid" src="./home_columns_1.jpg" alt="Card image cap">
+          <div class="card-body">
+            <h5 class="card-title">Things to see and do</h5>
+            <p class="card-text">Outdoor activities, cultural activities, markets, tours, activities for families, and more.</p>
+            <%= link_to "Learn more", tourist_guide_index_path(anchor: "tourist-guide-items"), class: "btn" %>
+          </div>
+        </div>
+        <div class="card m-5" style="width: 20rem;">
+          <img class="card-img-top img-fluid" src="./home_columns_2.jpg" alt="Card image cap">
+          <div class="card-body">
+            <h5 class="card-title">Eat and drink</h5>
+            <p class="card-text">Little Town is renowned for its lively bars, tasty restaurants and many live music venues.</p>
+            <%= link_to "Learn more", tourist_guide_index_path(anchor: "restaurants-pubs"), class: "btn" %>
+          </div>
+        </div>
+        <div class="card m-5" style="width: 20rem;">
+          <img class="card-img-top img-fluid" src="./home_columns_3.jpg" alt="Card image cap">
+          <div class="card-body">
+            <h5 class="card-title">Where to stay</h5>
+            <p class="card-text">We enjoy a beautiful array of historical places to stay, and we are looking forward to welcoming you.</p>
+            <%= link_to "Learn more", accommodations_path, class: "btn" %>
+          </div>
+        </div>
+    </div>
+</div>
+<!-- End Cards -->
+
+<div class="row">
+    <div class="col-md-6 p-0">
+      <img src="./home_lower_image.jpg" class="img-fluid"/>
+    </div>
+    <div class="col-md-6 p-0">
+      <div class="residents">
+        <h1>Area for residents</h1>
+        <p>We encourage you to check out the latest news and projects of our Little Town, and to participate in our Forum discussion. This area is reserved for residents only.</p>
+        <%= link_to "Latest Town's Projects", latest_projects_path, class: "btn mt-4 me-4" %>
+        <%= link_to "Town's Forum", forum_index_path, class: "btn mt-4" %>
+      </div>
+    </div>
+</div>

@@ -1,0 +1,253 @@
+<style>
+  body{
+    background-color: #f2f2f2;
+  }
+  .forum-content{
+    margin: 0% 10% 5% 10%;
+  }
+
+  @media(max-width:1199px){
+    .col-xl-8{
+      order: 2;
+    }
+    .col-xl-4{
+      order: 1;
+    }
+  }
+  @media(max-width:476px){
+    .forum-content{
+      margin: 0% 10% 0% 10%;
+    }
+  }
+  .jumbotron{
+    margin: 9% 0% 6% 0%;
+  }
+  .jumbotron h1{
+    font-size:2.3vw;
+    font-weight: bold;
+    color: #18654e;
+  }
+  .jumbotron p{
+    font-size:1.3vw;
+    padding-right: 35%;
+  }
+  @media(max-width:1450px){
+      .jumbotron h1{
+        font-size:3vw;
+      }
+      .jumbotron p{
+        font-size:1.5vw;
+      }
+  }
+  @media(max-width:1199px){
+    .card-user{
+        margin: 0% 0% 0% 0%;
+    }
+  }
+  @media(max-width:991px){
+      .jumbotron{
+        margin: 15% 0% 0% 0%;
+      }
+      .jumbotron h1{
+        font-size:7vw;
+      }
+      .jumbotron p{
+        font-size:3.2vw;
+      }
+  }
+  @media(max-width:476px){
+      .jumbotron h1{
+        font-size:10vw;
+      }
+      .jumbotron p{
+        font-size:5vw;
+      }
+  }
+  .card-user{
+    margin: 15% 0% 5% 25%;
+    padding: 2% 1% 3% 1%;
+  }
+  @media(max-width:1199px){
+    .card-user{
+        margin: 7% 0% 0% 0%;
+        padding: 2% 1% 3% 1%;
+    }
+  }
+  .btn-card{
+    margin: 2% 2% 2% 0%;
+    width: 100%;
+  }
+  .btn-edit{
+    border-style: solid;
+    border-radius: 5px;
+    border-width:2px;
+    border-color: #18654e;
+    background-color: #18654e;
+    color: #ffff;
+    width:100%;
+  }
+  .btn-edit:hover{
+    background-color: #ffff;
+    color: #18654e;
+  }
+  .btn-danger{
+    border-style: solid;
+    border-radius: 5px;
+    border-width:2px;
+    border-color: #dc3545;
+  }
+  .btn-danger:hover{
+    background-color: white;
+    color:#dc3545;
+  }
+  .card-body-posts p:first-child{
+    color: rgba(0, 0, 0, 0.55);
+  }
+  .card-body-posts a{
+    text-decoration: none;
+    color: #18654e;
+    font-size:0.9vw;
+    margin: 0% 3% 0% 0%;
+  }
+  .card-body-posts button{
+    text-decoration: none;
+    color: #18654e;
+    font-size:0.9vw;
+    margin: 0% 3% 0% 0%;
+  }
+  .card-body-posts a:hover{
+    color: white;
+  }
+  .btn-posts{
+    background-color: white;
+  }
+  .btn-posts-card:hover{
+    color: #ffc107 !important;
+  }
+  .btn-posts-card-delete{
+    color: #dc3545 !important;
+    border-style: none;
+    background-color: transparent;
+  }
+  .btn-posts-card-delete:hover{
+    color: #ffc107 !important;
+  }
+  @media(max-width:1450px){
+    .card-body-posts a{
+      font-size:1.7vw;
+    }
+  }
+  @media(max-width:991px){
+    .card-body-posts a{
+      font-size:3vw;
+    }
+    .card-body-posts button{
+      font-size:3vw;
+    }
+  }
+  @media(max-width:476px){
+    .card-body-posts a{
+      font-size:4vw;
+    }
+    .card-body-posts button{
+      font-size:4vw;
+    }
+  }
+</style>
+<div class="row forum-content" >
+    <div class="col-xl-8 p-0">
+        <!-- Jumbotron for Latest Projects -->
+        <div class="text-left jumbotron">
+            <h1>Welcome to your personal area!</h1>
+            <br />
+            <p>On this page, find your contribuitions and comments on the Town's Forum.</p>
+        </div>
+        <!--End Jumbotron -->
+        <hr />
+        <div class="text-left jumbotron mt-5">
+            <h1 class="pb-4">My published posts</h1>
+        </div>
+        <div class="d-flex justify-content-center my-5 btn-posts">
+          <%= link_to "Create a new post", new_post_path, class: "btn btn-edit" %>
+        </div>
+        <!-- Cards for next projects -->
+        <div class="card-container next-projects">
+            <div class="d-flex flex-wrap">
+                <% current_user.posts.first(3).each do |post| %>
+                  <div class="card mb-5" style="width: 100%;">
+                    <div class="card-body card-body-posts">
+                      <p><%= post.created_at.mday %>/<%= post.created_at.month %>/<%= post.created_at.year %></p>
+                      <h5 class="card-title"><%= post.title %></h5>
+                      <p class="card-text"><%= post.description %></p>
+                      <p>By: <%= post.user.name %> <%= post.user.surname %></p>
+                      <div class="d-flex">
+                        <%= link_to "View Post", forum_path(post), class: "btn-posts-card" %>
+                        <%= link_to "Edit Post", edit_post_path(post), class: "btn-posts-card" %>
+                        <%= button_to "Delete", post_path(post), method: :delete, class: "btn-posts-card-delete" %>
+                      </div>
+                    </div>
+                  </div>
+                <% end %>
+            </div>
+        </div>
+        <!-- End Cards for next projects -->
+      <% if current_user.posts.count > 3 %> 
+        <div class="d-flex justify-content-center my-5 btn-posts">
+            <button class="btn btn-edit" style="width:100%;" type="button" data-bs-toggle="collapse" data-bs-target=".collapse" aria-controls="collapseExample" aria-expanded="false" aria-label="Toggle cards">
+                Load More
+            </button>
+        </div>
+        <div class="collapse card-container next-projects">
+            <div class="d-flex flex-wrap">
+                <% current_user.posts.slice(3, current_user.posts.count-3).each do |post| %>
+                  <div class="card mb-5" style="width: 100%;">
+                    <div class="card-body card-body-posts">
+                      <p><%= post.created_at.mday %>/<%= post.created_at.month %>/<%= post.created_at.year %></p>
+                      <h5 class="card-title"><%= post.title %></h5>
+                      <p class="card-text"><%= post.description %></p>
+                      <p>By: <%= post.user.name %> <%= post.user.surname %></p>
+                      <div class="d-flex">
+                      <%= link_to "View Post", forum_path(post), class: "btn-posts-card" %>
+                      <%= link_to "Edit Post", edit_post_path(post), class: "btn-posts-card" %>
+                      <%= button_to "Delete", post_path(post), method: :delete, class: "btn-posts-card-delete" %>
+                      </div>
+                    </div>
+                  </div>
+                <% end %>
+            </div>
+        </div>
+        <% end %>
+    </div>
+    <div class="col-xl-4 p-0 d-flex justify-content-center" >
+        <div class="card card-user text-center" style="width: 20rem; height: 20rem">
+          <div class="card-body">
+            <h3 class="card-title my-3"><%= current_user.name %> <%= current_user.surname %></h3>
+            <p class="card-text mt-3">Member of Little Town</p>
+            <p class="card-text pt-3 mb-4"><%= current_user.email %></p>
+            <%= link_to "Edit Profile", edit_user_registration_path, class: "nav-link", class: "btn btn-edit btn-card" %>
+            <!-- Button trigger modal for account cancellation -->
+            <button type="button" class="btn btn-danger btn-card" data-bs-toggle="modal" data-bs-target="#exampleModal">Cancel my account</button>
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header d-flex justify-content-center">
+                            <h3 class="modal-title ms-4 my-2" id="exampleModalLabel">Are you sure?</h3>
+                        </div>
+                        <div class="modal-body">
+                            <h5 class="modal-title my-2" id="exampleModalLabel">All your personal data will be errased from the system.</h5>
+                        </div>
+                        <div class="modal-footer d-flex justify-content-center">
+                            <button type="button" class="close btn btn-edit" data-bs-dismiss="modal" aria-label="Close">
+                                Close window
+                            </button>
+                            <%= button_to "Delete my Account", registration_path(current_user), method: :delete, class: "btn btn-danger my-2" %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--End Modal -->
+          </div>
+        </div>
+    </div>
+</div>

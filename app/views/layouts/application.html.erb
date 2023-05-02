@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>LittletownsAgora</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <meta name="google-site-verification" content="bhvzVEE6syHvfmDvvfhVy97xfhHLMV4O5abaxLUH-P4" />
+    
+    <meta name="description" content="Littletown's Agora describes the services that Little Town has to offer, such as beauty spots, restaurants, pubs, and accommodations. It is also a portal for inhabitants of Little Town to see the usdergoing projects of the town, and connect through our forum.">
+    
+    <!-- Stylesheets and js for application.html.erb that loads Bootstrap styles and js-->
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_include_tag "application", "data-turbo-track": "reload", "data-turbolinks-eval": "false", defer: true %>
+
+    <!-- Stylesheets PT Serif font that is contained in the public folder -->
+    <%= stylesheet_link_tag "fonts" %>
+
+    <!-- Stylesheets and js for maps on Tourist Guide and Accomodation pages, it is loaded at the start so they are ready when landing on those pages-->
+    <%= stylesheet_link_tag "leaflet" %>
+    <%= javascript_include_tag "leaflet" %>
+    <%= stylesheet_link_tag "leaflet-gesture-handling.min" %>
+    <%= javascript_include_tag "leaflet-gesture-handling.min" %>
+
+  </head>
+
+  <body>
+    <!-- Renders navbar from partials-->
+    <%= render partial: 'partials/navbar' %>
+    <!-- Renders a custom notice layout if a notice is generated-->
+    <% if notice %>
+      <%= render 'partials/alerts' %>
+    <% end %>
+
+    <%= yield %>
+    <!-- Renders footer from partials-->
+    <%= render 'partials/footer' %>
+  </body>
+</html>

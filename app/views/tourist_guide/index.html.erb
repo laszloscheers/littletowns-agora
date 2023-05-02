@@ -1,0 +1,245 @@
+<style>
+  #map {
+      height: 600px;
+      width: 100%;
+  }
+  .left {
+    position: absolute;
+    top: 40%;
+    left: 36%;
+    transform: translate(-50%, -50%);
+    color: white;
+  }
+  .carousel-title{
+    font-size:2.3vw;
+  }
+  .carousel-text{
+    font-size:1.4vw;
+  }
+  @media(max-width:815px){
+    .left {
+        top: 50%;
+        left: 32% !important;
+    }
+      .carousel-item img{
+          height: 75vw !important;
+      }
+      .carousel-title{
+        font-size:7vw;
+        padding-top:3%;
+      }
+      .carousel-text{
+        font-size:4.3vw;
+      }
+      .carousel-body{
+        color: #f8f9fa;
+        font-weight: bold;
+      }
+      .carousel-card{
+        width: 60vw !important;
+        height: 75vw !important;
+      }
+      .left {
+        left: 25%;
+      }
+  }
+  .jumbotron{
+    margin: 3% 0% 1% 0%;
+  }
+  .jumbotron h1{
+    font-size:2.7vw;
+    font-weight: bold;
+    color: #18654e;
+
+  }
+  .jumbotron p{
+    font-size:1.2vw;
+  }
+  @media(max-width:815px){
+      .jumbotron{
+        margin: 8% 0% 0% 0%;
+      }
+      .jumbotron h1{
+        font-size:7vw;
+      }
+      .jumbotron p{
+        font-size:4vw;
+        margin: 0% 15% 0% 15%;
+      }
+  }
+  .btn{
+    border-style: solid;
+    border-radius: 5px;
+    border-width:2px;
+    border-color: #18654e;
+    background-color: #18654e;
+    color:#ffff;
+  }
+  .btn:hover{
+    background-color: #ffff;
+    color:#18654e;
+  }
+  .card-container{
+    margin-bottom: 4%;
+  }
+  .restaurants-pubs{
+    background-color: #ede7dc; 
+  }
+</style>
+<!-- Hero Block -->
+<div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel" data-bs-interval="7000">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <picture>
+        <source 
+          class="d-block w-100 img-fluid" 
+          style="width:100%; height:auto;"
+          media="(min-width: 816px)"
+          srcset="../tourist_guide_hero.jpg">
+
+        <source
+          class="d-block w-100 img-fluid" 
+          style="width:100%; height:auto;"
+          media="(min-width: 465px)"
+          srcset="../tourist_guide_hero_tablet.jpg">
+
+        <img 
+          class="d-block w-100 img-fluid"
+          style="width:100%; height:auto;"
+          src="../tourist_guide_hero_mobile.jpg" 
+          alt="Littletown's landscape photo">
+      </picture>
+      <div class="card carousel-card left" style="width: 25vw;background: none !important; border:none !important">
+        <div class="card-body carousel-body">
+          <h5 class="card-title carousel-title">Tourist guide</h5>
+          <p class="card-text carousel-text">Whether you want to visit our historical landmarks, run wild in nature with the kids, or enjoy our markets and pubs, we have the perfect plan for you!</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End Hero Block -->
+
+<!-- Tourist Guide Items -->
+<!-- Jumbotron for Tourist Guide Items -->
+<div class="text-center jumbotron" id="tourist-guide-items">
+    <h1>Things to see</h1>
+    <br />
+    <p>Historical landmarks, full of Irish history and culture.</p>
+</div>
+<!--End Jumbotron -->
+
+<!-- Cards for Tourist Guide Items -->
+<div class="card-container">
+    <div class="d-flex justify-content-center flex-wrap">
+        <% @tourist_guide_items.first(3).each do |item| %>
+          <div class="card m-5" style="width: 18rem;">
+            <%= image_tag(item.image, class: "card-img-top image-fluid", alt: item.title) %>
+            <div class="card-body">
+              <h5 class="card-title"><%= item.title %></h5>
+              <p class="card-text"><%= item.description %></p>
+              <div class="d-flex">
+                <%= link_to "Show", tourist_guide_path(item), class: "btn mx-1" %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+    </div>
+    <% if @tourist_guide_items.count > 3 %> 
+      <div class="d-flex justify-content-center mt-5">
+          <button class="btn" style="width:80%;" type="button" data-bs-toggle="collapse" data-bs-target=".collapse1" aria-controls="collapseExample" aria-expanded="false" aria-label="Toggle cards">
+              Load More
+          </button>
+      </div>
+      <div class="collapse collapse1 mt-5">
+          <div class="d-flex justify-content-center flex-wrap">
+            <% @tourist_guide_items.slice(3, @tourist_guide_items.count-3).each do |item| %>
+              <div class="card m-5" style="width: 18rem;">
+                <%= image_tag(item.image, class: "card-img-top image-fluid", alt: item.title) %>
+                <div class="card-body">
+                  <h5 class="card-title"><%= item.title %></h5>
+                  <p class="card-text"><%= item.description %></p>
+                  <div class="d-flex">
+                    <%= link_to "Show", tourist_guide_path(item), class: "btn mx-1" %>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          </div>
+      </div>
+    <% end %>
+</div>
+<!-- End Cards -->
+<!-- End Tourist Guide Items -->
+
+<!-- Restaurants and pubs -->
+<div class="restaurants-pubs py-3" id="restaurants-pubs">
+    <!-- Jumbotron for Restaurants and Pubs -->
+    <div class="text-center jumbotron">
+        <h1>Eat and drink</h1>
+        <br />
+        <p>Enjoy the flavours of Little Town. We have a reputation for great food served and unique pubs.</p>
+    </div>
+    <!--End Jumbotron -->
+
+    <!-- Cards for Tourist Guide Items -->
+    <div class="card-container">
+        <div class="d-flex justify-content-center flex-wrap">
+            <% @businesses.each do |business| %>
+              <% if business.type_of_business != "Accommodation" %>
+                <div class="card m-5" style="width: 18rem;">
+                  <%= image_tag(business.image, class: "card-img-top image-fluid", alt: business.title) %>
+                  <div class="card-body">
+                    <h5 class="card-title"><%= business.title %></h5>
+                    <p class="card-text"><%= business.description %></p>
+                    <div class="d-flex">
+                      <%= link_to "Show", accommodation_path(business), class: "btn mx-1" %>
+                    </div>
+                  </div>
+                </div>
+              <% end %>
+            <% end %>
+        </div>
+    </div>
+    <!-- End Cards -->
+</div>
+<!-- End Restaurants and pubs -->
+
+<!-- Jumbotron for Maps -->
+<div class="text-center jumbotron mb-5">
+    <h1>Find your way</h1>
+    <br />
+    <p>Use the map below to locate our town’s experiences, restaurants and pubs.</p>
+</div>
+<!--End Jumbotron -->
+<div id="map"></div>
+
+<script>
+    var map = L.map('map', {gestureHandling: true}).setView([53.273665, -6.854582], 15);
+</script>
+
+<script>
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+    var greenIcon = L.icon({
+        iconUrl: '../location.png',
+        iconSize:     [50, 50], // size of the icon
+        popupAnchor:  [0, -25] // point from which the popup should open relative to the iconAnchor
+    });
+
+</script>
+
+<% @tourist_guide_items.each do |item| %>
+    <script>
+        L.marker(['<%= item.latitude %>', '<%= item.longitude %>'], {icon: greenIcon}).addTo(map).bindPopup('<h5><%= link_to tourist_guide_path(item) do %><%= item.title %><% end %></h5>');
+    </script>
+<% end %>
+
+<% @businesses.each do |business| %>
+  <% if business.type_of_business != "Accommodation" %>
+    <script>
+        L.marker(['<%= business.latitude %>', '<%= business.longitude %>'], {icon: greenIcon}).addTo(map).bindPopup('<h5><%= link_to accommodation_path(business) do %><%= business.title %><% end %></h5>');
+    </script>
+  <% end %>
+<% end %>

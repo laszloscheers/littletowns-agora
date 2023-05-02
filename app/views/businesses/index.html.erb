@@ -1,0 +1,15 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Businesses</h1>
+
+<div id="businesses">
+  <% @businesses.each do |business| %>
+    <%= render business %>
+    <p>
+      <%= link_to "Show this business", business %>
+      <%= link_to "Show this tourist guide item", accommodation_path(business), class: "link-secondary" %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New business", new_business_path %>

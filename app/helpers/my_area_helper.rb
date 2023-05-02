@@ -1,0 +1,2 @@
+module MyAreaHelper
+end

@@ -1,0 +1,126 @@
+<style>
+  .card{
+      line-height: 3rem;
+  }
+  body{
+    background-color: #ede7dc;
+  }
+  .btn{
+    border-style: solid;
+    border-radius: 5px;
+    border-width:2px;
+    border-color: #18654e;
+    color:#ffff;
+    background-color: #18654e;
+  }
+  .btn:hover{
+    background-color: #ffff;
+    color:#18654e;
+  }
+  a{
+    text-decoration: none;
+    color: #18654e;
+  }
+  a:hover{
+    color: #ffc107;
+  }
+  .btn-danger{
+    border-style: solid;
+    border-radius: 5px;
+    border-width:2px;
+    border-color: #dc3545;
+    color:white;
+    background-color: #dc3545;
+  }
+  .btn-danger:hover{
+    background-color: white;
+    color:#dc3545;
+  }
+</style>
+<div class=" my-4 d-flex justify-content-center">
+<div class=" px-2 pb-1 pt-1" style="width: 40rem;">
+  <div class="card m-4">
+    <div class="card-header">
+      <h2>Edit <%= current_user.name %>'s Profile</h2>
+    </div>
+    <div class="card-body">
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+        <%= render "devise/shared/error_messages", resource: resource %>
+
+        <% if current_user.moderator? || current_user.admin? %>
+          <div class="field form-group m-2">
+            <%= f.label :name %><br />
+            <%= f.text_field :name, autofocus: false, class: 'form-control', :disabled => true %>
+          </div>
+          <div class="field form-group m-2">
+            <%= f.label :surname %><br />
+            <%= f.text_field :surname, autofocus: false, class: 'form-control', :disabled => true %>
+          </div>
+        <% else %>
+          <div class="field form-group m-2">
+            <%= f.label :name %><br />
+            <%= f.text_field :name, autofocus: false, class: 'form-control' %>
+          </div>
+          <div class="field form-group m-2">
+            <%= f.label :surname %><br />
+            <%= f.text_field :surname, autofocus: false, class: 'form-control' %>
+          </div>
+        <% end %>
+
+        <div class="field form-group mx-2 mt-2 mb-4">
+          <%= f.label :email %><br />
+          <%= f.email_field :email, autofocus: false, autocomplete: "email", class: "form-control", :disabled => true %>
+        </div>
+        <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+          <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+        <% end %>
+
+        <div class="field form-group m-2">
+          <% if current_user.user? %>
+          <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
+          <% else %>
+          <%= f.label :password %><br />
+          <% end %>
+          <%= f.password_field :password, autocomplete: "new-password", class: "form-control" %>
+          <% if @minimum_password_length %>
+            <em><%= @minimum_password_length %> characters minimum</em>
+          <% end %>
+        </div>
+        <div class="field form-group m-2">
+          <%= f.label :password_confirmation %><br />
+          <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control" %>
+        </div>
+        <!-- Button trigger modal for account cancellation -->
+        <div class="field form-group my-4 ms-2">
+          <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal">Update my Account</button>
+        </div>
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header d-flex justify-content-center">
+                        <h3 class="modal-title ms-4 my-2" id="exampleModalLabel">Please enter your current password</h3>
+                    </div>
+                    <div class="modal-body">
+                      <div class="field form-group mx-2 mt-2 mb-4">
+                        <%= f.label :current_password %><br />
+                        <%= f.password_field :current_password, autocomplete: "off", class: "form-control" %>
+                      </div>
+                    </div>
+                    <div class="modal-footer d-flex justify-content-center">
+                        <button type="button" class="close btn btn-danger" data-bs-dismiss="modal" aria-label="Close">
+                            Cancel
+                        </button>
+                        <div class="actions field m-2">
+                          <%= f.submit "Update my Account", class: "btn" %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--End Modal -->
+      <% end %>
+    </div>
+  </div>
+</div>
+</div>

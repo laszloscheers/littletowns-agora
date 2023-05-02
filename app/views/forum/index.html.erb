@@ -1,0 +1,146 @@
+<style>
+  body{
+    background-color: #ede7dc;
+  }
+  .forum-content{
+    margin: 0% 25% 5% 15%;
+  }
+  @media(max-width:476px){
+    .forum-content{
+      margin: 0% 10% 0% 10%;
+    }
+  }
+  .jumbotron{
+    margin: 7% 40% 7% 0%;
+  }
+  .jumbotron h1{
+    font-size:2.3vw;
+    font-weight: bold;
+    color: #18654e;
+  }
+  .jumbotron p{
+    font-size:1.3vw;
+  }
+  @media(max-width:1450px){
+      .jumbotron h1{
+        font-size:3vw;
+      }
+      .jumbotron p{
+        font-size:1.5vw;
+      }
+  }
+  @media(max-width:991px){
+      .jumbotron{
+        margin: 15% 0% 0% 0%;
+      }
+      .jumbotron h1{
+        font-size:7vw;
+      }
+      .jumbotron p{
+        font-size:3.2vw;
+      }
+  }
+  @media(max-width:476px){
+      .jumbotron h1{
+        font-size:10vw;
+      }
+      .jumbotron p{
+        font-size:5vw;
+      }
+  }
+  .btn{
+    border-style: solid;
+    border-radius: 5px;
+    border-width:2px;
+    border-color: #18654e;
+    color:#18654e;
+    width:100%;
+    background-color: #18654e;
+    color: #ffff;
+  }
+  .btn:hover{
+    background-color: #ffff;
+    color: #18654e;
+  }
+  .card-body p:first-child{
+    color: rgba(0, 0, 0, 0.55);
+  }
+  .card-body a{
+    text-decoration: none;
+    color: #18654e;
+    font-size:0.9vw;
+  }
+  .card-body a:hover{
+    color: #ffc107;
+  }
+  @media(max-width:1450px){
+    .card-body a{
+      font-size:1.7vw;
+    }
+  }
+  @media(max-width:991px){
+    .card-body a{
+      font-size:3vw;
+    }
+  }
+  @media(max-width:476px){
+    .card-body a{
+      font-size:5vw;
+    }
+  }
+</style>
+
+<div class="forum-content">
+  <!-- Jumbotron for Latest Projects -->
+  <div class="text-left jumbotron">
+      <h1>Little Town Forum</h1>
+      <br />
+      <p>Share your thoughts, questions and activities with your fellow Little Towners! This space is for residents only.</p>
+  </div>
+  <!--End Jumbotron -->
+
+  <div class="mt-5 mb-5">
+      <%= link_to "Create a new post", new_post_path, class: "btn btn-edit" %>
+  </div>
+  
+  <!-- Cards for next projects -->
+  <div class="card-container next-projects">
+      <div class="d-flex flex-wrap">
+          <% @posts.first(4).each do |post| %>
+            <div class="card mb-5" style="width: 100%;">
+              <div class="card-body">
+                <p><%= post.created_at.mday %>/<%= post.created_at.month %>/<%= post.created_at.year %></p>
+                <h5 class="card-title"><%= post.title %></h5>
+                <p class="card-text"><%= post.description %></p>
+                <p>By: <%= post.user.name %> <%= post.user.surname %></p>
+                <%= link_to "Read more", forum_path(post) %>
+              </div>
+            </div>
+          <% end %>
+      </div>
+  </div>
+    <% if @posts.count > 4 %> 
+      <div class="d-flex justify-content-center my-5 btn-posts">
+          <button class="btn btn-edit" style="width:100%;" type="button" data-bs-toggle="collapse" data-bs-target=".collapse" aria-controls="collapseExample" aria-expanded="false" aria-label="Toggle cards">
+              Load More
+          </button>
+      </div>
+      <div class="collapse card-container next-projects">
+          <div class="d-flex flex-wrap">
+            <% @posts.slice(4, @posts.count-4).each do |post| %>
+              <div class="card mb-5" style="width: 100%;">
+                <div class="card-body">
+                  <p><%= post.created_at.mday %>/<%= post.created_at.month %>/<%= post.created_at.year %></p>
+                  <h5 class="card-title"><%= post.title %></h5>
+                  <p class="card-text"><%= post.description %></p>
+                  <p>By: <%= post.user.name %> <%= post.user.surname %></p>
+                  <%= link_to "Read more", forum_path(post) %>
+                </div>
+              </div>
+            <% end %>
+          </div>
+      </div>
+    <% end %>
+  <!-- End Cards for next projects -->
+
+</div>

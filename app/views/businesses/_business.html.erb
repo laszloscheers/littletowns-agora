@@ -1,0 +1,37 @@
+<div id="<%= dom_id business %>">
+  <p>
+    <strong>Title:</strong>
+    <%= business.title %>
+  </p>
+
+  <p>
+    <strong>Description:</strong>
+    <%= business.description %>
+  </p>
+
+  <p>
+    <strong>Type of business:</strong>
+    <%= business.type_of_business %>
+  </p>
+
+  <p>
+    <strong>Photo:</strong>
+    <%= image_tag(business.image) %>
+  </p>
+  
+  <p>
+    <strong>Latitude:</strong>
+    <%= business.latitude %>
+  </p>
+
+  <p>
+    <strong>Longitude:</strong>
+    <%= business.longitude %>
+  </p>
+
+  <p>
+    <strong>User:</strong>
+    <%= business.user_id %>
+  </p>
+
+</div>

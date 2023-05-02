@@ -1,0 +1,86 @@
+<style>
+  body{
+    background-color: #ede7dc;
+  }
+  .btn{
+    border-style: solid;
+    border-radius: 5px;
+    border-width:2px;
+    border-color: #18654e;
+    background-color: #18654e;
+    color:#ffff;
+  }
+  .btn:hover{
+    background-color: #ffff;
+    color:#18654e;
+  }
+  a{
+    text-decoration: none;
+    color: #18654e;
+  }
+  a:hover{
+    color: #ffc107;
+  }
+</style>
+
+<div class=" my-5 d-flex justify-content-center">
+  <div class=" px-5 pb-5 pt-4" style="width: 45rem;">
+    <div class="card  mx-5 mt-5 mb-3">
+      <div class="card-header">
+        <h2>Edit Project</h2>
+      </div>
+      <div class="card-body">
+        <%= form_with(model: @project) do |form| %>
+                <% if @project.errors.any? %>
+                  <div style="color: red">
+                    <h2><%= pluralize(@project.errors.count, "error") %> prohibited this @project from being saved:</h2>
+
+                    <ul>
+                      <% @project.errors.each do |error| %>
+                        <li><%= error.full_message %></li>
+                      <% end %>
+                    </ul>
+                  </div>
+                <% end %>
+
+                <div class="form-group" >
+                  <%= form.label :title, style: "display: block" %>
+                  <%= form.text_field :title, class: "form-control", :required => true %>
+                </div>
+                <br/>
+                <div class="form-group">
+                  <%= form.label :description, style: "display: block" %>
+                  <%= form.text_field :description, class: "form-control", :required => true %>
+                </div>
+                <br/>
+                <div class="field form-group">
+                  <%= form.label :image %>
+                  <%= form.file_field :image, class: "form-control" %>
+                </div>
+                <br/>
+                <div class="form-group">
+                  <%= form.label :latitude, style: "display: block" %>
+                  <%= form.text_field :latitude, class: "form-control", :required => true %>
+                </div>
+                <br/>
+                <div class="form-group">
+                  <%= form.label :longitude, style: "display: block" %>
+                  <%= form.text_field :longitude, class: "form-control", :required => true %>
+                </div>
+                <br/>
+                <div class="form-group">
+                  <%= form.label :user_id, style: "display: none" %>
+                  <%= form.number_field :user_id, id: :tourist_guide_item_user_id, value: current_user.id, type: :hidden %>
+                </div>
+                <div>
+                  <%= form.submit  "Edit Project", class: "btn" %>
+                </div>
+                <br/>
+        <% end %>
+        <div>
+          <%= link_to "Back to Admin Area", admin_area_index_path %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,52 @@
+<%= form_with(model: business) do |form| %>
+  <% if business.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(business.errors.count, "error") %> prohibited this business from being saved:</h2>
+
+      <ul>
+        <% business.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :title, style: "display: block" %>
+    <%= form.text_field :title %>
+  </div>
+
+  <div>
+    <%= form.label :description, style: "display: block" %>
+    <%= form.text_field :description %>
+  </div>
+
+  <div>
+    <%= form.label :type_of_business, style: "display: block" %>
+    <%= form.text_field :type_of_business %>
+  </div>
+
+  <div class="field">
+    <%= form.label :image %>
+    <%= form.file_field :image %>
+  </div>
+  
+  <div>
+    <%= form.label :latitude, style: "display: block" %>
+    <%= form.text_field :latitude %>
+  </div>
+
+  <div>
+    <%= form.label :longitude, style: "display: block" %>
+    <%= form.text_field :longitude %>
+  </div>
+
+  <div>
+    <%= form.label :user_id, style: "display: block" %>
+    <%= form.number_field :user_id, id: :busines_user_id, value: current_user.id, type: :hidden %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
