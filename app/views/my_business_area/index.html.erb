@@ -3,16 +3,7 @@
     background-color: #f2f2f2;
   }
   .forum-content{
-    margin: 0% 10% 5% 10%;
-  }
-
-  @media(max-width:1199px){
-    .col-xl-8{
-      order: 2;
-    }
-    .col-xl-4{
-      order: 1;
-    }
+    margin: 0% 10% 0% 10%;
   }
   @media(max-width:476px){
     .forum-content{
@@ -20,7 +11,7 @@
     }
   }
   .jumbotron{
-    margin: 9% 0% 6% 0%;
+    margin: 2% 0% 0% 0%;
   }
   .jumbotron h1{
     font-size:2.3vw;
@@ -73,6 +64,12 @@
         padding: 2% 1% 3% 1%;
     }
   }
+  @media(max-width:992px){
+    .card-holder{
+        justify-content: start !important;
+        margin-bottom: 5%;
+    }
+  }
   .btn-card{
     margin: 2% 2% 2% 0%;
     width: 100%;
@@ -84,7 +81,6 @@
     border-color: #18654e;
     background-color: #18654e;
     color: #ffff;
-    width:100%;
   }
   .btn-edit:hover{
     background-color: #ffff;
@@ -100,7 +96,7 @@
     background-color: white;
     color:#dc3545;
   }
-  .residents a{
+  .residents a, .residents button{
     text-decoration: none;
     color: #18654e;
     font-size:0.9vw;
@@ -112,38 +108,40 @@
     color: #dc3545 !important;
     border-style: none;
     background-color: transparent;
+    padding: 0;
+    font-size: 
   }
   .image-fluid{
     width: 100%;
-    height: 100%
+    height: 100%;
   }
   @media(max-width:1622px){
-    .residents a{
+    .residents a, .residents button{
       font-size:1.3vw;
     }
   }
   @media(max-width:1242px){
-    .residents a{
+    .residents a, .residents button{
       font-size:1.5vw;
     }
   }
   @media(max-width:991px){
-    .residents a{
+    .residents a, .residents button{
       font-size:2.1vw;
     }
   }
   @media(max-width:720px){
-    .residents a{
+    .residents a, .residents button{
       font-size:2.3vw;
     }
   }
   @media(max-width:578px){
-    .residents a{
+    .residents a, .residents button{
       font-size:2.7vw;
     }
   }
   @media(max-width:454px){
-    .residents a{
+    .residents a, .residents button{
       font-size:4vw;
     }
   }
@@ -202,7 +200,7 @@
   }
 </style>
 <div class="row forum-content" >
-    <div class="col-xl-8 p-0">
+    <div class="col-lg-8 p-0 d-flex align-items-center">
         <!-- Jumbotron for Latest Projects -->
         <div class="text-left jumbotron">
             <h1>Welcome to your business area!</h1>
@@ -210,31 +208,8 @@
             <p>As a business owner of Little Town, you may use this area to create and edit your businesses' presence on the town's website.</p>
         </div>
         <!--End Jumbotron -->
-        <div class="d-flex justify-content-center my-5 btn-posts">
-            <%= link_to "Create a new business", new_business_path, class: "btn btn-edit" %>
-        </div>
-        <!--Card for fisrt project -->
-        <% current_user.businesses.each do |business| %>
-        <div class="row first-project">
-            <div class="col-md-6 p-0">
-              <%= image_tag(business.image, class: "image-fluid", alt: business.title) %>
-            </div>
-            <div class="col-md-6 p-0">
-              <div class="residents">
-                <p><%= business.created_at.mday %>/<%= business.created_at.month %>/<%= business.created_at.year %></p>
-                <h1><%= business.title %></h1>
-                <p><%= business.description %></p>
-                <div class="d-flex">
-                  <%= link_to "Show", accommodation_path(business), class: "btn-posts-card" %>
-                  <%= link_to "Edit", edit_business_path(business), class: "btn-posts-card" %>
-                  <%= button_to "Delete", business_path(business), method: :delete, class: "btn-posts-card-delete ms-4" %>
-                </div>
-              </div>
-            </div>
-        </div>
-        <% end %>
     </div>
-    <div class="col-xl-4 p-0 d-flex justify-content-center" >
+    <div class="col-lg-4 p-0 d-flex justify-content-center card-holder" >
         <div class="card card-user text-center" style="width: 20rem; height: 18rem">
           <div class="card-body">
             <h3 class="card-title my-3"><%= current_user.name %> <%= current_user.surname %></h3>
@@ -244,4 +219,33 @@
           </div>
         </div>
     </div>
+</div>
+<div class="forum-content">
+  <hr />
+  <div class="text-left jumbotron">
+      <h1 class="pb-4">My published business</h1>
+  </div>
+  <div class="d-flex justify-content-start my-5 btn-posts">
+      <%= link_to "Create a new business", new_business_path, class: "btn btn-edit" %>
+  </div>
+  <!--Card for fisrt project -->
+  <% current_user.businesses.each do |business| %>
+  <div class="row first-project">
+      <div class="col-md-5 p-0">
+        <%= image_tag(business.image, class: "image-fluid", alt: business.title) %>
+      </div>
+      <div class="col-md-7 p-0">
+        <div class="residents f-flex align-items-arround">
+          <p><%= business.created_at.mday %>/<%= business.created_at.month %>/<%= business.created_at.year %></p>
+          <h1><%= business.title %></h1>
+          <p><%= business.description %></p>
+          <div class="d-flex">
+            <%= link_to "Show", accommodation_path(business), class: "btn-posts-card" %>
+            <%= link_to "Edit", edit_business_path(business), class: "btn-posts-card" %>
+            <%= button_to "Delete", business_path(business), method: :delete, class: "btn-posts-card-delete ms-4" %>
+          </div>
+        </div>
+      </div>
+  </div>
+  <% end %>
 </div>

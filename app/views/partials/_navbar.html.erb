@@ -40,7 +40,7 @@
                 <%= link_to "Accommodations", accommodations_path, class: "nav-link" %>
             </li>
             <li class="nav-item dropdown mt-1">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <a class="nav-link dropdown-toggle me-1" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Residents Area
               </a>
               <ul class="dropdown-menu me-3" style="position: absolute !important" aria-labelledby="navbarDropdown">
@@ -55,15 +55,15 @@
             </li>
             <% if user_signed_in? %>
                 <% if current_user.user? %>
-                    <li class="nav-item pe-4 mt-1 d-flex align-items-center">
+                    <li class="nav-item ms-2 me-3 mt-1 d-flex align-items-center">
                         <%= link_to my_area_index_path, class: "nav-link px-0" do %><i class="me-1 fa fa-user" aria-hidden="true" style="color:#18654e"></i><% end %><%= link_to "My Area", my_area_index_path, class: "nav-link px-0" %>
                     </li>
                 <% elsif current_user.moderator? %>
-                    <li class="nav-item pe-4 mt-1 d-flex align-items-center">
+                    <li class="nav-item ms-2 me-3 mt-1 d-flex align-items-center">
                         <%= link_to my_business_area_index_path, class: "nav-link px-0" do %><i class="me-1 fa fa-user" aria-hidden="true" style="color:#18654e"></i><% end %><%= link_to "My Business Area", my_business_area_index_path, class: "nav-link px-0" %>
                     </li>
                 <% elsif current_user.admin? %>
-                    <li class="nav-item pe-4 mt-1 d-flex align-items-center">
+                    <li class="nav-item ms-2 me-3 mt-1 d-flex align-items-center">
                         <%= link_to admin_area_index_path, class: "nav-link px-0" do %><i class="me-1 fa fa-user" aria-hidden="true" style="color:#18654e"></i><% end %><%= link_to "Admin Area", admin_area_index_path, class: "nav-link px-0" %>
                     </li>
                 <% end %>
