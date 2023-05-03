@@ -105,10 +105,10 @@
   }
   @media(max-width:576px){
       .jumbotron{
-        margin: 15% 0% 1% 0%;
+        margin: 12% 0% 5% 0%;
       }
       .jumbotron h1{
-        font-size:7.5vw;
+        font-size:8vw;
       }
       .jumbotron p{
         font-size:4.7vw;
@@ -126,6 +126,13 @@
   .btn:hover{
     background-color: #ffff;
     color: #18654e;
+  }
+  .btn-img{
+    transition: all .2s ease-in-out;
+  }
+  .btn-img:hover{
+    transform: scale(1.04);
+    transition: all .2s ease-in-out;
   }
   .card-container{
     margin: 7% 10% 7% 10%;
@@ -186,7 +193,7 @@
             <% @businesses.each do |business| %>
               <% if business.type_of_business == "Accommodation" %>
                 <div class="card m-5" style="width: 18rem;">
-                  <%= image_tag(business.image, class: "card-img-top image-fluid", alt: business.title) %>
+                  <%= link_to accommodation_path(business), class: "btn-img" do %><%= image_tag(business.image, class: "card-img-top image-fluid", alt: business.title) %><% end %>
                   <div class="card-body">
                     <h5 class="card-title"><%= business.title %></h5>
                     <p class="card-text"><%= business.description %></p>

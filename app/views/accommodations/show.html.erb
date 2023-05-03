@@ -110,11 +110,11 @@
         <div class="residents">
           <div class="d-flex breadcrum">
             <% if @business.type_of_business == "Restaurant" || @business.type_of_business == "Pub" %>
-                <%= link_to "Tourist Guide", tourist_guide_index_path %>
+                <%= link_to "Tourist Guide", tourist_guide_index_path, class: "me-2" %>
             <% else %>
-                <%= link_to "Accommodations", accommodations_path %>
+                <%= link_to "Accommodations", accommodations_path, class: "me-2" %>
             <% end %>
-            /<%= @business.title %>
+            <span class="me-2">/</span><%= @business.title %>
           </div>
             <h1><%= @business.title %></h1>
             <p><%= @business.description %></p>
@@ -131,7 +131,7 @@
       <h3>How to get there</h3>
   </div>
   <!--End Jumbotron -->
-  <div id="map"></div>
+  <div id="map" class="mb-5"></div>
 </div>
 
 
