@@ -18,6 +18,46 @@
       margin: 0% 2.5% 0% 2.5%;
     }
   }
+  .btn-out{
+    border-style: solid;
+    border-radius: 5px;
+    border-width:2px;
+    border-color: #18654e !important;
+    background-color: #18654e !important;
+    color:#ffff !important;
+    transition: none;
+    padding-right: 0.5rem !important;
+    padding-left: 0.5rem !important;
+  }
+  .btn-out:hover{
+    background-color: #ffff !important;
+    color:#18654e !important;
+    transition: none;
+  }
+  .absolute-right{
+    position:absolute !important;
+  }
+  @media(max-width:992px){
+    .absolute-right{
+      top: 110% !important;
+      left: 80% !important;
+    }
+  .btn-out{
+    margin-top: 0.5rem;
+  }
+  }
+  @media(max-width:774px){
+    .absolute-right{
+      top: 110% !important;
+      left: 70% !important;
+    }
+  }
+    @media(max-width:544px){
+    .absolute-right{
+      top: 120% !important;
+      left: 53% !important;
+    }
+  }
 </style>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -30,20 +70,20 @@
 
     <div class="navbar-collapse collapse w-100 ">
         <ul class="navbar-nav ms-auto">
-            <li class="nav-item active mt-1">
+            <li class="nav-item active mt-1 d-flex justify-content-end">
                 <%= link_to "Home", root_path, class: "nav-link" %>
             </li>
-            <li class="nav-item mt-1">
+            <li class="nav-item mt-1 d-flex justify-content-end">
                 <%= link_to "Tourist Guide", tourist_guide_index_path, class: "nav-link" %>
             </li>
-            <li class="nav-item mt-1">
+            <li class="nav-item mt-1 d-flex justify-content-end">
                 <%= link_to "Accommodations", accommodations_path, class: "nav-link" %>
             </li>
-            <li class="nav-item dropdown mt-1">
+            <li class="nav-item dropdown mt-1 d-flex justify-content-end">
               <a class="nav-link dropdown-toggle me-1" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Residents Area
               </a>
-              <ul class="dropdown-menu me-3" style="position: absolute !important" aria-labelledby="navbarDropdown">
+              <ul class="dropdown-menu me-3 absolute-right" aria-labelledby="navbarDropdown">
                 <li><%= link_to "Town's Projects", latest_projects_path, class: "dropdown-item" %></li>
                 <li><%= link_to "Town's Forum", forum_index_path, class: "dropdown-item" %></li>
                 <% if !user_signed_in? %>
@@ -55,20 +95,20 @@
             </li>
             <% if user_signed_in? %>
                 <% if current_user.user? %>
-                    <li class="nav-item ms-2 me-3 mt-1 d-flex align-items-center">
+                    <li class="nav-item mt-1 d-flex justify-content-end">
                         <%= link_to my_area_index_path, class: "nav-link px-0" do %><i class="me-1 fa fa-user" aria-hidden="true" style="color:#18654e"></i><% end %><%= link_to "My Area", my_area_index_path, class: "nav-link px-0" %>
                     </li>
                 <% elsif current_user.moderator? %>
-                    <li class="nav-item ms-2 me-3 mt-1 d-flex align-items-center">
+                    <li class="nav-item mt-1 d-flex justify-content-end">
                         <%= link_to my_business_area_index_path, class: "nav-link px-0" do %><i class="me-1 fa fa-user" aria-hidden="true" style="color:#18654e"></i><% end %><%= link_to "My Business Area", my_business_area_index_path, class: "nav-link px-0" %>
                     </li>
                 <% elsif current_user.admin? %>
-                    <li class="nav-item ms-2 me-3 mt-1 d-flex align-items-center">
+                    <li class="nav-item mt-1 d-flex justify-content-end">
                         <%= link_to admin_area_index_path, class: "nav-link px-0" do %><i class="me-1 fa fa-user" aria-hidden="true" style="color:#18654e"></i><% end %><%= link_to "Admin Area", admin_area_index_path, class: "nav-link px-0" %>
                     </li>
                 <% end %>
-                <li class="nav-item pe-3 mt-2 d-flex align-items-center me-3">
-                    <%= button_to "Sign Out", destroy_user_session_path, class: "nav-link bg-light ", method: :delete %>
+                <li class="nav-item mt-1 ms-3 d-flex justify-content-end align-items-center">
+                    <%= button_to "Sign Out", destroy_user_session_path, class: "nav-link bg-light btn-out", method: :delete %>
                 </li>
             <% end %>
         </ul>
