@@ -72,7 +72,7 @@
   .residents{
     margin: 7% 0% 7% 0%;
   }
-  .first-project h1{
+  .first-project h3{
     margin: 5% 0% 0% 5%;
   }
   .first-project p:first-child{
@@ -247,7 +247,7 @@
         <div class="col-md-6 p-0">
           <div class="residents">
             <p><%= project.created_at.mday %>/<%= project.created_at.month %>/<%= project.created_at.year %></p>
-            <h1><%= project.title %></h1>
+            <h3><%= project.title %></h3>
             <p><%= project.description %></p>
             <%= link_to "Read more", latest_project_path(project) %>
           </div>

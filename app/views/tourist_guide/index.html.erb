@@ -17,7 +17,7 @@
   .carousel-text{
     font-size:1.4vw;
   }
-  .carousel-item picture img{
+  .carousel-item img{
     height: 30vw !important;
   }
   @media(max-width:1391px){
@@ -71,6 +71,31 @@
         top: 50% !important;
         left: 40% !important;
       }
+  }
+  .tourist-guide{
+    padding: 2% 10% 10% 10%;
+  }
+  .restaurants-pubs{
+    background-color: #ede7dc; 
+    padding: 3% 10% 10% 10%;
+  }
+  @media(max-width:968px){
+    .tourist-guide{
+      padding: 2% 0% 10% 0%;
+    }
+    .restaurants-pubs{
+      background-color: #ede7dc; 
+      padding: 3% 0% 10% 0%;
+    }
+  }
+  @media(max-width:476px){
+    .tourist-guide{
+      padding: 2% 2% 10% 2%;
+    }
+    .restaurants-pubs{
+      background-color: #ede7dc; 
+      padding: 3% 2% 10% 2%;
+    }
   }
   .jumbotron{
     margin: 3% 0% 1% 0%;
@@ -149,9 +174,6 @@
   .card-container{
     margin-bottom: 4%;
   }
-  .restaurants-pubs{
-    background-color: #ede7dc; 
-  }
 </style>
 <!-- Hero Block -->
 <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel" data-bs-interval="7000">
@@ -185,59 +207,62 @@
 <!-- End Hero Block -->
 
 <!-- Tourist Guide Items -->
-<!-- Jumbotron for Tourist Guide Items -->
-<div class="text-center jumbotron" id="tourist-guide-items">
-    <h1>Things to see</h1>
-    <br />
-    <p>Historical landmarks, full of Irish history and culture.</p>
-</div>
-<!--End Jumbotron -->
+<div class="tourist-guide" id="tourist-guide-items">
 
-<!-- Cards for Tourist Guide Items -->
-<div class="card-container">
-    <div class="d-flex justify-content-center flex-wrap">
-        <% @tourist_guide_items.first(3).each do |item| %>
-          <div class="card m-5" style="width: 18rem;">
-            <%= link_to tourist_guide_path(item), class: "btn-img" do %><%= image_tag(item.image, class: "card-img-top image-fluid", alt: item.title) %><% end %>
-            <div class="card-body">
-              <h5 class="card-title"><%= item.title %></h5>
-              <p class="card-text"><%= item.description %></p>
-              <div class="d-flex">
-                <%= link_to "Show", tourist_guide_path(item), class: "btn mx-1" %>
-              </div>
-            </div>
-          </div>
-        <% end %>
-    </div>
-    <% if @tourist_guide_items.count > 3 %> 
-      <div class="d-flex justify-content-center mt-5">
-          <button class="btn" type="button" data-bs-toggle="collapse" data-bs-target=".collapse1" aria-controls="collapseExample" aria-expanded="false" aria-label="Toggle cards">
-              More
-          </button>
-      </div>
-      <div class="collapse collapse1">
-          <div class="d-flex justify-content-center flex-wrap">
-            <% @tourist_guide_items.slice(3, @tourist_guide_items.count-3).each do |item| %>
-              <div class="card m-5" style="width: 18rem;">
-                <%= link_to tourist_guide_path(item), class: "btn-img" do %><%= image_tag(item.image, class: "card-img-top image-fluid", alt: item.title) %> <% end %>
-                <div class="card-body">
-                  <h5 class="card-title"><%= item.title %></h5>
-                  <p class="card-text"><%= item.description %></p>
-                  <div class="d-flex">
-                    <%= link_to "Show", tourist_guide_path(item), class: "btn mx-1" %>
-                  </div>
+  <!-- Jumbotron for Tourist Guide Items -->
+  <div class="text-center jumbotron">
+      <h1>Things to see</h1>
+      <br />
+      <p>Historical landmarks, full of Irish history and culture.</p>
+  </div>
+  <!--End Jumbotron -->
+
+  <!-- Cards for Tourist Guide Items -->
+  <div class="card-container">
+      <div class="d-flex justify-content-center flex-wrap">
+          <% @tourist_guide_items.first(3).each do |item| %>
+            <div class="card m-5" style="width: 18rem;">
+              <%= link_to tourist_guide_path(item), class: "btn-img" do %><%= image_tag(item.image, class: "card-img-top image-fluid", alt: item.title) %><% end %>
+              <div class="card-body">
+                <h5 class="card-title"><%= item.title %></h5>
+                <p class="card-text"><%= item.description %></p>
+                <div class="d-flex">
+                  <%= link_to "Show", tourist_guide_path(item), class: "btn mx-1" %>
                 </div>
               </div>
-            <% end %>
-          </div>
+            </div>
+          <% end %>
       </div>
-    <% end %>
+      <% if @tourist_guide_items.count > 3 %> 
+        <div class="d-flex justify-content-center mt-5">
+            <button class="btn" type="button" data-bs-toggle="collapse" data-bs-target=".collapse1" aria-controls="collapseExample" aria-expanded="false" aria-label="Toggle cards">
+                More
+            </button>
+        </div>
+        <div class="collapse collapse1">
+            <div class="d-flex justify-content-center flex-wrap">
+              <% @tourist_guide_items.slice(3, @tourist_guide_items.count-3).each do |item| %>
+                <div class="card m-5" style="width: 18rem;">
+                  <%= link_to tourist_guide_path(item), class: "btn-img" do %><%= image_tag(item.image, class: "card-img-top image-fluid", alt: item.title) %> <% end %>
+                  <div class="card-body">
+                    <h5 class="card-title"><%= item.title %></h5>
+                    <p class="card-text"><%= item.description %></p>
+                    <div class="d-flex">
+                      <%= link_to "Show", tourist_guide_path(item), class: "btn mx-1" %>
+                    </div>
+                  </div>
+                </div>
+              <% end %>
+            </div>
+        </div>
+      <% end %>
+  </div>
+  <!-- End Cards -->
 </div>
-<!-- End Cards -->
 <!-- End Tourist Guide Items -->
 
 <!-- Restaurants and pubs -->
-<div class="restaurants-pubs py-3" id="restaurants-pubs">
+<div class="restaurants-pubs" id="restaurants-pubs">
     <!-- Jumbotron for Restaurants and Pubs -->
     <div class="text-center jumbotron">
         <h1>Eat and drink</h1>
