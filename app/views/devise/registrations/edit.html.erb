@@ -12,10 +12,12 @@
     border-color: #18654e;
     color:#ffff;
     background-color: #18654e;
+    transition: none;
   }
   .btn:hover{
     background-color: #ffff;
     color:#18654e;
+    transition: none;
   }
   a{
     text-decoration: none;
@@ -31,10 +33,22 @@
     border-color: #dc3545;
     color:white;
     background-color: #dc3545;
+    transition: none;
   }
   .btn-danger:hover{
     background-color: white;
     color:#dc3545;
+    transition: none;
+  }
+  @media(max-width:512px){
+    .card{
+      margin-left:0 !important;
+      margin-right:0!important;
+    }
+    .ms-5{
+    margin-left:1% !important;
+
+    }
   }
 </style>
 <div class=" my-4 d-flex justify-content-center">
