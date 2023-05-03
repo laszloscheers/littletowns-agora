@@ -17,6 +17,9 @@
   .carousel-text{
     font-size:1.4vw;
   }
+  .carousel-item picture img{
+    height: 30vw !important;
+  }
   @media(max-width:1391px){
       .carousel-item img{
           height: 40vw !important;
@@ -157,23 +160,20 @@
       <picture>
         <source 
           class="d-block w-100 img-fluid" 
-          style="width:100%; height:auto;"
           media="(min-width: 831px)"
           srcset="../tourist_guide_hero.jpg">
 
         <source
           class="d-block w-100 img-fluid" 
-          style="width:100%; height:auto;"
           media="(min-width: 465px)"
           srcset="../tourist_guide_hero_tablet.jpg">
 
         <img 
           class="d-block w-100 img-fluid"
-          style="width:100%; height:auto;"
           src="../tourist_guide_hero_mobile.jpg" 
           alt="Littletown's landscape photo">
       </picture>
-      <div class="card carousel-card left" style="width: 35vw;background: none !important; border:none !important">
+      <div class="card carousel-card left" style="width: 30vw;background: none !important; border:none !important">
         <div class="card-body carousel-body">
           <h5 class="card-title carousel-title">Tourist guide</h5>
           <p class="card-text carousel-text">Whether you want to visit our historical landmarks, run wild in nature with the kids, or enjoy our markets and pubs, we have the perfect plan for you!</p>

@@ -55,7 +55,7 @@
           </p>
           <% if !user_signed_in? %>
             <p>
-              <%= link_to "Sign In", new_user_session_path, class: "text-reset links" %>
+              <%= link_to "Log In", new_user_session_path, class: "text-reset links me-2" %>/<%= link_to new_user_registration_path, class: "text-reset links ms-2" do %></i>Sign Up<% end %>
             </p>
           <% elsif current_user.user? %>
             <p>
