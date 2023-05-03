@@ -61,7 +61,6 @@
   }
   .btn-card{
     margin: 2% 2% 2% 0%;
-    width: 100%;
   }
   .btn{
     border-style: solid;
@@ -107,6 +106,17 @@
     color: #18654e;
     font-size:0.9vw;
   }
+  .card{
+    margin: 3% 3% 3% 3%;
+  }
+  @media(max-width:578px){
+    .card{
+      margin: 3% 0% 3% 0%;
+    }
+    .card-holder{
+      justify-content: start !important;
+    }
+  }
   .btn-posts-card:hover, .btn-posts-card-delete:hover{
     color: #ffc107 !important;
   }
@@ -128,6 +138,9 @@
   @media(max-width:991px){
     .residents a{
       font-size:2.1vw;
+    }
+    .btn-new{
+      margin-top: 10%;
     }
   }
   @media(max-width:720px){
@@ -152,7 +165,8 @@
     }
   }
   .first-project{
-    margin-bottom: 1%;
+    margin-bottom: 2%;
+    margin-bottom: 2%;
     border: 1px solid rgba(0, 0, 0, 0.125);
     border-radius: 0.25rem;
     background-color: white;
@@ -222,18 +236,18 @@
         <div class="col-lg-8 p-0">
           <h1>Tourist Guide Items</h1>
         </div>
-        <div class="col-lg-4 p-0 d-flex justify-content-center" >
-          <div class="d-flex justify-content-center btn-posts">
-              <%= link_to "Create a new tourist guide item", new_tourist_guide_item_path, class: "btn btn-edit btn-new" %>
+        <div class="col-lg-4 p-0 d-flex justify-content-start" >
+          <div class="d-flex justify-content-start btn-posts">
+              <%= link_to "Create a new item", new_tourist_guide_item_path, class: "btn btn-edit btn-new" %>
           </div>
         </div>
     </div>
 
     <!-- Cards for Tourist Guide Items -->
-    <div class="card-container mt-5">
-        <div class="d-flex justify-content-center flex-wrap">
+    <div class="card-container my-5">
+        <div class="d-flex justify-content-center flex-wrap card-holder">
           <% current_user.tourist_guide_items.first(3).each do |item| %>
-            <div class="card m-5" style="width: 18rem;">
+            <div class="card" style="width: 18rem;">
               <%= image_tag(item.image, class: "card-img-top image-fluid", alt: item.title) %>
               <div class="card-body">
                 <h5 class="card-title"><%= item.title %></h5>
@@ -248,15 +262,15 @@
           <% end %>
         </div>
         <% if current_user.tourist_guide_items.count > 3 %> 
-          <div class="d-flex justify-content-center my-5">
-              <button class="btn" style="width:80%;" type="button" data-bs-toggle="collapse" data-bs-target=".collapse1" aria-controls="collapseExample" aria-expanded="false" aria-label="Toggle cards">
+          <div class="d-flex justify-content-start my-5">
+              <button class="btn" type="button" data-bs-toggle="collapse" data-bs-target=".collapse1" aria-controls="collapseExample" aria-expanded="false" aria-label="Toggle cards">
                   Load More
               </button>
           </div>
           <div class="collapse collapse1 mt-5">
-              <div class="d-flex justify-content-center flex-wrap">
+              <div class="d-flex justify-content-center flex-wrap card-holder">
                 <% current_user.tourist_guide_items.slice(3, current_user.tourist_guide_items.count-3).each do |item| %>
-                  <div class="card m-5" style="width: 18rem;">
+                  <div class="card" style="width: 18rem;">
                     <%= image_tag(item.image, class: "card-img-top image-fluid", alt: item.title) %>
                     <div class="card-body">
                       <h5 class="card-title"><%= item.title %></h5>
@@ -280,7 +294,7 @@
         <div class="col-lg-8 p-0">
           <h1>Town's Projects</h1>
         </div>
-        <div class="col-lg-4 p-0 d-flex justify-content-center" >
+        <div class="col-lg-4 p-0 d-flex justify-content-start" >
           <div class="d-flex justify-content-center btn-posts">
               <%= link_to "Create a new project", new_project_path, class: "btn btn-edit btn-new" %>
           </div>
@@ -308,12 +322,12 @@
     <% end %>
     <% if current_user.projects.count > 2 %> 
       <!-- Card for fisrt project -->
-      <div class="d-flex justify-content-center my-5 btn-posts">
-          <button class="btn btn-edit" style="width:100%;" type="button" data-bs-toggle="collapse" data-bs-target=".collapse2" aria-controls="collapseExample" aria-expanded="false" aria-label="Toggle cards">
+      <div class="d-flex justify-content-start my-5 btn-posts">
+          <button class="btn btn-edit" type="button" data-bs-toggle="collapse" data-bs-target=".collapse2" aria-controls="collapseExample" aria-expanded="false" aria-label="Toggle cards">
               Load More
           </button>
       </div>
-      <div class="collapse collapse2 card-container next-projects">
+      <div class="collapse collapse2 card-container next-projects my-5">
         <% current_user.projects.slice(2, current_user.projects.count-2).each do |project| %>
           <div class="row first-project">
               <div class="col-md-6 p-0">
