@@ -87,7 +87,17 @@
   }
   .image-fluid{
     width: 100%;
-    width: 100%;
+    height: 100%;
+  }
+  .btn-img{
+    transition: all .2s ease-in-out;
+  }
+  .btn-img:hover{
+    transform: scale(1.04);
+    transition: all .2s ease-in-out;
+  }
+  .col-md-6 a{
+    margin-left: 0;
   }
   @media(max-width:1622px){
     .first-project p{
@@ -222,7 +232,7 @@
 
   <!-- Jumbotron for Latest Projects -->
   <div class="text-left jumbotron">
-      <h1>Latest Projects</h1>
+      <h1>Latest Projects in Little Town</h1>
       <br />
       <p>Discover the latest news from Little Town, from upcoming events to new developments and changes happening in our town.</p>
   </div>
@@ -232,7 +242,7 @@
   <% @projects.first(1).each do |project| %>
     <div class="row first-project">
         <div class="col-md-6 p-0">
-          <%= image_tag(project.image, class: "image-fluid", alt: project.title) %>
+          <%= link_to latest_project_path(project) do %><%= image_tag(project.image, class: "image-fluid", alt: project.title) %><% end %>
         </div>
         <div class="col-md-6 p-0">
           <div class="residents">
@@ -257,7 +267,7 @@
                 <p class="card-text"><%= project.description %></p>
                 <%= link_to "Read more", latest_project_path(project) %>
               </div>
-              <%= image_tag(project.image, class: "card-img-top img-fluid", alt: project.title) %>
+              <%= link_to latest_project_path(project), class: "btn-img" do %><%= image_tag(project.image, class: "card-img-top img-fluid", alt: project.title) %><% end %>
             </div>
           <% end %>
       </div>
@@ -279,7 +289,7 @@
                   <p class="card-text"><%= project.description %></p>
                   <%= link_to "Read more", latest_project_path(project) %>
                 </div>
-                <%= image_tag(project.image, class: "card-img-top img-fluid", alt: project.title) %>
+                <%= link_to latest_project_path(project), class: "btn-img" do %><%= image_tag(project.image, class: "card-img-top img-fluid", alt: project.title) %><% end %>
               </div>
             <% end %>
           </div>
