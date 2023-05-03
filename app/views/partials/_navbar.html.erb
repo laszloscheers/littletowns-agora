@@ -6,29 +6,122 @@
   .brand{
     padding-right: 1%;
   }
+  .nav-link{
+    color: rgba(0, 0, 0, 0.9) !important;
+  }
+  @media(max-width:1168px){
+    .nav-visible{
+      font-size: 0.95rem !important;
+    }
+    .my-nav{
+      font-size: 0.95rem !important;
+    }
+    .dropdown-item{
+      font-size: 0.95rem !important;
+    }
+    .btn-out{
+      font-size: 0.95rem !important;
+    }
+  }
+  @media(max-width:1074px){
+    .nav-visible{
+      font-size: 0.85rem !important;
+    }
+    .my-nav{
+      font-size: 0.85rem !important;
+    }
+    .dropdown-item{
+      font-size: 0.85rem !important;
+    }
+    .btn-out{
+      font-size: 0.85rem !important;
+    }
+  }
+  @media(max-width:1018px){
+    .nav-visible{
+      font-size: 0.8rem !important;
+    }
+    .my-nav{
+      font-size: 0.8rem !important;
+    }
+    .dropdown-item{
+      font-size: 0.8rem !important;
+    }
+    .btn-out{
+      font-size: 0.8rem !important;
+    }
+  }
+  @media(max-width:992px){
+    .nav-visible{
+      font-size: 1.1rem !important;
+    }
+    .my-nav{
+      font-size: 1.1rem !important;
+    }
+    .dropdown-item{
+      font-size: 1.1rem !important;
+    }
+    .btn-out{
+      font-size: 1.1rem !important;
+    }
+    .nav-visible{
+      border: none !important;
+    }
+    .my-nav{
+      border: none !important;
+    }
+  }
   .nav-visible{
-    border-bottom: 2px solid #f8f9fa;
+    border: 2px solid #f8f9fa;
+    border-radius: 6px;
+    padding-bottom: 0.3rem !important;
+    padding-top: 0.3rem !important;
+    margin-right: 0.5rem !important;
+    margin-left: 0.5rem !important;
+    transition: none;
     font-size: 1.1rem;
-    padding-bottom: 0.1rem;
-    margin-right: 0.3rem;
-    margin-left: 0.3rem;
   }
   .nav-visible:hover{
-    color: black !important;
-    border-bottom: 2px solid #18654e;
+    border: 2px solid #18654e;
+    border-radius: 6px;
+    transition: all .2s ease-in-out;
+  }
+  .my-nav{
+    border: 2px solid #f8f9fa;
+    border-radius: 6px;
+    margin-right: 0.5rem !important;
+    margin-left: 0.5rem !important;
+    transition: none;
+    font-size: 1.1rem;
+  }
+  .my-nav:hover{
+    border: 2px solid #18654e;
+    border-radius: 6px;
+    transition: all .2s ease-in-out;
+  }
+  .my_links-right{
+    padding-bottom: 0.3rem !important;
+    padding-top: 0.3rem !important;
+    padding-right: 0.5rem !important;
+    padding-left: 0 !important;
+  }
+  .my_links-left{
+    padding-bottom: 0.3rem !important;
+    padding-top: 0.3rem !important;
+    padding-right: 0 !important;
+    padding-left: 0.5rem !important;
   }
   .dropdown-item{
     background-color: #ffffff !important;
+    font-size: 1.1rem;
   }
   .dropdown-item:hover{
     background-color: #e9ecef !important;
   }
-  .nav-item a:hover{
-    color: black !important;
-  }
   .container-fluid{
     margin: 0% 5% 0% 5%;
   }
+
   @media(max-width:815px){
     .container-fluid{
       margin: 0% 2.5% 0% 2.5%;
@@ -42,8 +135,8 @@
     background-color: #18654e !important;
     color:#ffff !important;
     transition: none;
-    padding-right: 0.5rem !important;
-    padding-left: 0.5rem !important;
+    padding: 0.2rem 0.5rem 0.2rem 0.5rem !important;
+    font-size: 1.1rem;
   }
   .btn-out:hover{
     background-color: #ffff !important;
@@ -86,16 +179,16 @@
 
     <div class="navbar-collapse collapse w-100 ">
         <ul class="navbar-nav ms-auto">
-            <li class="nav-item active mt-1 d-flex justify-content-end">
+            <li class="nav-item active mt-1 d-flex justify-content-end align-items-center">
                 <%= link_to "Home", root_path, class: "nav-link nav-visible" %>
             </li>
-            <li class="nav-item mt-1 d-flex justify-content-end">
+            <li class="nav-item mt-1 d-flex justify-content-end align-items-center">
                 <%= link_to "Tourist Guide", tourist_guide_index_path, class: "nav-link nav-visible" %>
             </li>
-            <li class="nav-item mt-1 d-flex justify-content-end">
+            <li class="nav-item mt-1 d-flex justify-content-end align-items-center">
                 <%= link_to "Accommodations", accommodations_path, class: "nav-link nav-visible" %>
             </li>
-            <li class="nav-item dropdown mt-1 d-flex justify-content-end">
+            <li class="nav-item dropdown mt-1 d-flex justify-content-end align-items-center">
               <a class="nav-link nav-visible dropdown-toggle me-1" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Residents Area
               </a>
@@ -111,16 +204,16 @@
             </li>
             <% if user_signed_in? %>
                 <% if current_user.user? %>
-                    <li class="nav-item mt-1 d-flex justify-content-end">
-                        <%= link_to my_area_index_path, class: "nav-link px-0" do %><i class="me-1 fa fa-user" aria-hidden="true" style="color:#18654e"></i><% end %><%= link_to "My Area", my_area_index_path, class: "nav-link px-0" %>
+                    <li class="nav-item my-nav mt-1 mx-2 d-flex justify-content-end align-items-center">
+                        <%= link_to my_area_index_path, class: "nav-link my_links-left" do %><i class="me-1 fa fa-user" aria-hidden="true" style="color:#18654e"></i><% end %><%= link_to "My Area", my_area_index_path, class: "nav-link my_links-right" %>
                     </li>
                 <% elsif current_user.moderator? %>
-                    <li class="nav-item mt-1 d-flex justify-content-end">
-                        <%= link_to my_business_area_index_path, class: "nav-link px-0" do %><i class="me-1 fa fa-user" aria-hidden="true" style="color:#18654e"></i><% end %><%= link_to "My Business Area", my_business_area_index_path, class: "nav-link px-0" %>
+                    <li class="nav-item my-nav mt-1 mx-2 d-flex justify-content-end align-items-center">
+                        <%= link_to my_business_area_index_path, class: "nav-link my_links-left" do %><i class="me-1 fa fa-user" aria-hidden="true" style="color:#18654e"></i><% end %><%= link_to "My Business Area", my_business_area_index_path, class: "nav-link my_links-right" %>
                     </li>
                 <% elsif current_user.admin? %>
-                    <li class="nav-item mt-1 d-flex justify-content-end">
-                        <%= link_to admin_area_index_path, class: "nav-link px-0" do %><i class="me-1 fa fa-user" aria-hidden="true" style="color:#18654e"></i><% end %><%= link_to "Admin Area", admin_area_index_path, class: "nav-link px-0" %>
+                    <li class="nav-item my-nav mt-1 mx-2 d-flex justify-content-end align-items-center">
+                        <%= link_to admin_area_index_path, class: "nav-link my_links-left " do %><i class="me-1 fa fa-user" aria-hidden="true" style="color:#18654e"></i><% end %><%= link_to "Admin Area", admin_area_index_path, class: "nav-link my_links-right" %>
                     </li>
                 <% end %>
                 <li class="nav-item mt-1 ms-3 d-flex justify-content-end align-items-center">
