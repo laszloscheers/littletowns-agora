@@ -20,6 +20,20 @@
   .carousel-item img{
     height: 30vw !important;
   }
+  .map-links{
+    text-decoration: none;
+    color: #18654e;
+  }
+  .map-links:hover{
+    color: #ffc107;
+  }
+  .leaflet-container a {
+    text-decoration: none;
+    color: #18654e;
+  }
+  .info{
+    color:rgba(0, 0, 0, 0.55);;
+  }
   @media(max-width:1391px){
       .carousel-item img{
           height: 40vw !important;
@@ -73,7 +87,7 @@
       }
   }
   .tourist-guide{
-    padding: 2% 10% 10% 10%;
+    padding: 2% 10% 0% 10%;
   }
   .restaurants-pubs{
     background-color: #ede7dc; 
@@ -223,7 +237,7 @@
           <% @tourist_guide_items.first(3).each do |item| %>
             <div class="card m-5" style="width: 18rem;">
               <%= link_to tourist_guide_path(item), class: "btn-img" do %><%= image_tag(item.image, class: "card-img-top image-fluid", alt: item.title) %><% end %>
-              <div class="card-body">
+              <div class="card-body d-flex flex-column justify-content-between">
                 <h5 class="card-title"><%= item.title %></h5>
                 <p class="card-text"><%= item.description %></p>
                 <div class="d-flex">
@@ -240,11 +254,11 @@
             </button>
         </div>
         <div class="collapse collapse1">
-            <div class="d-flex justify-content-center flex-wrap">
+            <div class="d-flex justify-content-center flex-wrap mt-5">
               <% @tourist_guide_items.slice(3, @tourist_guide_items.count-3).each do |item| %>
                 <div class="card m-5" style="width: 18rem;">
                   <%= link_to tourist_guide_path(item), class: "btn-img" do %><%= image_tag(item.image, class: "card-img-top image-fluid", alt: item.title) %> <% end %>
-                  <div class="card-body">
+                  <div class="card-body d-flex flex-column justify-content-between">
                     <h5 class="card-title"><%= item.title %></h5>
                     <p class="card-text"><%= item.description %></p>
                     <div class="d-flex">
@@ -278,7 +292,7 @@
               <% if business.type_of_business != "Accommodation" %>
                 <div class="card m-5" style="width: 18rem;">
                   <%= link_to accommodation_path(business), class: "btn-img" do %><%= image_tag(business.image, class: "card-img-top image-fluid", alt: business.title) %><% end %>
-                  <div class="card-body">
+                  <div class="card-body d-flex flex-column justify-content-between">
                     <h5 class="card-title"><%= business.title %></h5>
                     <p class="card-text"><%= business.description %></p>
                     <div class="d-flex">
@@ -304,7 +318,7 @@
 <div id="map"></div>
 
 <script>
-    var map = L.map('map', {gestureHandling: true}).setView([53.273665, -6.854582], 14);
+    var map = L.map('map', {gestureHandling: true}).setView([53.273665, -6.854582], 15);
 </script>
 
 <script>
@@ -321,14 +335,14 @@
 
 <% @tourist_guide_items.each do |item| %>
     <script>
-        L.marker(['<%= item.latitude %>', '<%= item.longitude %>'], {icon: greenIcon}).addTo(map).bindPopup('<h5><%= link_to tourist_guide_path(item) do %><%= item.title %><% end %></h5>');
+        L.marker(['<%= item.latitude %>', '<%= item.longitude %>'], {icon: greenIcon}).addTo(map).bindPopup('<h5><%= link_to tourist_guide_path(item), class: "map-links" do %><%= item.title %><% end %></h5><p class="mb-0">Address:</p><p class="mt-0 mb-2 info"><%= item.address %></p><p class="mt-0 mb-2">Email: <span><%= link_to "mail_to:#{item.email}", class: "ms-0 map-links" do %><%= item.email %><% end %><span></p><p class="mt-0 mb-2">Phone: <span><%= link_to "tel:#{item.phone_number}", class: "ms-0 map-links" do %><%= item.phone_number %><% end %><span></p><p class="my-0">Opening hours:</p><p class="mt-0"><span class="info"><%= item.opening_hours %><span></p>');
     </script>
 <% end %>
 
 <% @businesses.each do |business| %>
   <% if business.type_of_business != "Accommodation" %>
     <script>
-        L.marker(['<%= business.latitude %>', '<%= business.longitude %>'], {icon: greenIcon}).addTo(map).bindPopup('<h5><%= link_to accommodation_path(business) do %><%= business.title %><% end %></h5>');
+        L.marker(['<%= business.latitude %>', '<%= business.longitude %>'], {icon: greenIcon}).addTo(map).bindPopup('<h5><%= link_to accommodation_path(business), class: "map-links" do %><%= business.title %><% end %></h5><p class="mb-0">Address:</p><p class="mt-0 mb-2 info"><%= business.address %></p><p class="mt-0 mb-2">Email: <span><%= link_to "mail_to:#{business.email}", class: "ms-0 map-links" do %><%= business.email %><% end %><span></p><p class="mt-0 mb-2">Phone: <span><%= link_to "tel:#{business.phone_number}", class: "ms-0 map-links" do %><%= business.phone_number %><% end %><span></p><p class="my-0">Opening hours:</p><p class="mt-0"><span class="info"><%= business.opening_hours %><span></p>');
     </script>
   <% end %>
 <% end %>

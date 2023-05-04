@@ -3,7 +3,16 @@
     background-color: #ede7dc;
   }
   .latest-projects-content{
-    margin: 0% 15% 0% 15%;
+    margin: 0% 20% 0% 20%;
+  }
+  .image-fluid{
+    width: 100%;
+    height: 100%;
+  }
+  @media(max-width:1600px){
+    .latest-projects-content{
+      margin: 0% 15% 0% 15%;
+    }
   }
   @media(max-width:1040px){
     .latest-projects-content{
@@ -11,7 +20,7 @@
     }
   }
   .jumbotron{
-    margin: 5% 0% 1% 0%;
+    margin: 8% 0% 6% 0%;
   }
   .jumbotron h1{
     font-size:2.3vw;
@@ -63,11 +72,9 @@
     }
   }
   .first-project{
-    margin: 4% 0% 1% 0%;
     border: 1px solid rgba(0, 0, 0, 0.125);
     border-radius: 0.25rem;
     background-color: white;
-    width: 100%;
   }
   .residents{
     margin: 7% 0% 7% 0%;
@@ -85,9 +92,8 @@
   .residents a{
     margin-left: 5% !important;
   }
-  .image-fluid{
-    width: 100%;
-    height: 100%;
+  .row{
+    --bs-gutter-x: 0 !important;
   }
   .btn-img{
     transition: all .2s ease-in-out;
@@ -105,9 +111,21 @@
     }
   }
   @media(max-width:1371px){
+    .latest-projects-content{
+      display:flex;
+      flex-direction: column;
+      align-items: center;
+    }
     .first-project{
       display:flex;
       flex-direction: column;
+      margin-right: 0 !important;
+      max-width: 80% !important;
+    }
+    .next-projects{
+      display:flex;
+      margin-right: 0 !important;
+      max-width: 80% !important;
     }
     .col-md-6:first-child{
       order:2;
@@ -137,6 +155,14 @@
     }
     .first-project h1{
       font-size:2.3vw;
+    }
+  }
+  @media(max-width:991px){
+    .first-project{
+      max-width: 100% !important;
+    }
+    .next-projects{
+      max-width: 100% !important;
     }
   }
   @media(max-width:859px){
@@ -188,12 +214,12 @@
   .card-body p:first-child{
     color: rgba(0, 0, 0, 0.55);
   }
-  .card-body a, .residents a{
+  .card-body a, .residents a, .map-button, .leaflet-container a{
     text-decoration: none;
     color: #18654e;
     font-size:0.9vw;
   }
-  .card-body a:hover, .residents a:hover{
+  .card-body a:hover, .residents a:hover, .map-button:hover{
     color: #ffc107;
   }
   @media(max-width:1622px){
@@ -226,6 +252,10 @@
       font-size:5vw;
     }
   }
+  #map {
+      height: 600px;
+      width: 100%;
+  }
 </style>
 
 <div class="latest-projects-content" >
@@ -240,11 +270,11 @@
 
   <!--Card for fisrt project -->
   <% @projects.first(1).each do |project| %>
-    <div class="row first-project">
-        <div class="col-md-6 p-0">
-          <%= link_to latest_project_path(project) do %><%= image_tag(project.image, class: "image-fluid", alt: project.title) %><% end %>
+    <div class="row first-project me-5">
+        <div class="col-md-6">
+          <%= link_to latest_project_path(project) do %><%= image_tag(project.image, class: "btn-img image-fluid", alt: project.title) %><% end %>
         </div>
-        <div class="col-md-6 p-0">
+        <div class="col-md-6">
           <div class="residents">
             <p><%= project.created_at.mday %>/<%= project.created_at.month %>/<%= project.created_at.year %></p>
             <h3><%= project.title %></h3>
@@ -258,7 +288,7 @@
 
   <!-- Cards for next projects -->
   <div class="card-container next-projects">
-      <div class="d-flex flex-wrap">
+      <div class="d-flex flex-wrap justify-content-between">
           <% @projects.slice(1,4).each do |project| %>
             <div class="card me-5 mb-5" style="width: 45%;">
               <div class="card-body">
@@ -267,7 +297,7 @@
                 <p class="card-text"><%= project.description %></p>
                 <%= link_to "Read more", latest_project_path(project) %>
               </div>
-              <%= link_to latest_project_path(project), class: "btn-img" do %><%= image_tag(project.image, class: "card-img-top img-fluid", alt: project.title) %><% end %>
+              <%= link_to latest_project_path(project), class: "btn-img" do %><%= image_tag(project.image, class: "card-img-top image-fluid", alt: project.title) %><% end %>
             </div>
           <% end %>
       </div>
@@ -280,7 +310,7 @@
           </button>
       </div>
       <div class="collapse card-container next-projects">
-          <div class="d-flex flex-wrap">
+          <div class="d-flex flex-wrap justify-content-between">
             <% @projects.slice(4, @projects.count-4).each do |project| %>
               <div class="card me-5 mb-5" style="width: 45%;">
                 <div class="card-body">
@@ -289,10 +319,41 @@
                   <p class="card-text"><%= project.description %></p>
                   <%= link_to "Read more", latest_project_path(project) %>
                 </div>
-                <%= link_to latest_project_path(project), class: "btn-img" do %><%= image_tag(project.image, class: "card-img-top img-fluid", alt: project.title) %><% end %>
+                <%= link_to latest_project_path(project), class: "btn-img" do %><%= image_tag(project.image, class: "card-img-top", alt: project.title) %><% end %>
               </div>
             <% end %>
           </div>
       </div>
     <% end %>
 </div>
+
+<!-- Jumbotron for Maps -->
+<div class="text-center jumbotron">
+    <h1>Find your way</h1>
+    <br />
+    <p>Check the location of the latest projects.</p>
+</div>
+<!--End Jumbotron -->
+<div id="map"></div>
+
+<script>
+    var map = L.map('map', {gestureHandling: true}).setView([53.273665, -6.854582], 15);
+</script>
+
+<script>
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+    var greenIcon = L.icon({
+        iconUrl: '../location.png',
+        iconSize:     [50, 50], // size of the icon
+        popupAnchor:  [0, -25] // point from which the popup should open relative to the iconAnchor
+    });
+
+</script>
+
+<% @projects.each do |projects| %>
+    <script>
+        L.marker(['<%= projects.latitude %>', '<%= projects.longitude %>'], {icon: greenIcon}).addTo(map).bindPopup('<%= link_to latest_project_path(projects), class: "map-button" do %><h5 class="mt-4"><%= projects.title %></h5><p class="mb-0">Address:</p><p class="mt-0"><span id="address"><%= projects.address %><span></p><% end %>');
+    </script>
+<% end %>

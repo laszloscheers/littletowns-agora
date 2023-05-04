@@ -3,7 +3,7 @@
     background-color: #f2f2f2;
   }
   .forum-content{
-    margin: 0% 10% 5% 10%;
+    margin: 5% 10% 5% 10%;
   }
 
   @media(max-width:476px){
@@ -12,7 +12,7 @@
     }
   }
   .jumbotron{
-    margin: 9% 0% 5% 0%;
+    margin: 5% 0% 3% 0%;
   }
   .jumbotron h1{
     font-size:2.3vw;
@@ -232,13 +232,13 @@
 <div class="forum-content" >
     <!-- Jumbotron for Latest Projects -->
     <div class="text-left jumbotron">
-        <h1>Welcome to the admin area!</h1>
+        <h1>Welcome to the Admin Area!</h1>
         <br />
         <p>Create, edit, and delete tourist guide items and town's projects.</p>
     </div>
     <!--End Jumbotron -->
     <hr />
-    <div class="row forum-content mx-0 my-5" >
+    <div class="row forum-content" >
         <div class="col-lg-8 p-0">
           <h1>Tourist Guide Items</h1>
         </div>
@@ -255,8 +255,8 @@
           <% current_user.tourist_guide_items.first(3).each do |item| %>
             <div class="card" style="width: 18rem;">
               <%= image_tag(item.image, class: "card-img-top image-fluid", alt: item.title) %>
-              <div class="card-body">
-                <h5 class="card-title"><%= item.title %></h5>
+              <div class="card-body d-flex flex-column justify-content-between">
+                <h5 class="card-title mt-3"><%= item.title %></h5>
                 <p class="card-text"><%= item.description %></p>
                 <div class="d-flex">
                   <%= link_to "Show", tourist_guide_path(item), class: "btn mx-1" %>
@@ -268,7 +268,7 @@
           <% end %>
         </div>
         <% if current_user.tourist_guide_items.count > 3 %> 
-          <div class="d-flex justify-content-start my-5">
+          <div class="d-flex justify-content-end my-5">
               <button class="btn" type="button" data-bs-toggle="collapse" data-bs-target=".collapse1" aria-controls="collapseExample" aria-expanded="false" aria-label="Toggle cards">
                   Load More
               </button>
@@ -278,8 +278,8 @@
                 <% current_user.tourist_guide_items.slice(3, current_user.tourist_guide_items.count-3).each do |item| %>
                   <div class="card" style="width: 18rem;">
                     <%= image_tag(item.image, class: "card-img-top image-fluid", alt: item.title) %>
-                    <div class="card-body">
-                      <h5 class="card-title"><%= item.title %></h5>
+                    <div class="card-body d-flex flex-column justify-content-between">
+                      <h5 class="card-title mt-3"><%= item.title %></h5>
                       <p class="card-text"><%= item.description %></p>
                       <div class="d-flex">
                         <%= link_to "Show", tourist_guide_path(item), class: "btn mx-1" %>
@@ -296,7 +296,7 @@
     <!-- End Cards -->
     <!-- End Tourist Guide Items -->
     <hr />
-    <div class="row forum-content mx-0 my-5" >
+    <div class="row forum-content" >
         <div class="col-lg-8 p-0">
           <h1>Town's Projects</h1>
         </div>
@@ -306,56 +306,50 @@
           </div>
         </div>
     </div>
-    <!--Card for fisrt project -->
-    <% current_user.projects.first(2).each do |project| %>
-      <div class="row first-project">
-          <div class="col-md-6 p-0">
-            <%= image_tag(project.image, class: "image-fluid", alt: project.title) %>
-          </div>
-          <div class="col-md-6 p-0">
-            <div class="residents">
-              <p><%= project.created_at.mday %>/<%= project.created_at.month %>/<%= project.created_at.year %></p>
-              <h1><%= project.title %></h1>
-              <p><%= project.description %></p>
-              <div class="d-flex">
-                <%= link_to "Show", latest_project_path(project), class: "btn-posts-card" %>
-                <%= link_to "Edit", edit_project_path(project), class: "btn-posts-card" %>
-                <%= button_to "Delete", project_path(project), method: :delete, class: "btn-posts-card-delete ms-4" %>
-              </div>
-            </div>
-          </div>
-      </div>
-    <% end %>
-    <% if current_user.projects.count > 2 %> 
-      <!-- Card for fisrt project -->
-      <div class="d-flex justify-content-start my-5 btn-posts">
-          <button class="btn btn-edit" type="button" data-bs-toggle="collapse" data-bs-target=".collapse2" aria-controls="collapseExample" aria-expanded="false" aria-label="Toggle cards">
-              Load More
-          </button>
-      </div>
-      <div class="collapse collapse2 card-container next-projects my-5">
-        <% current_user.projects.slice(2, current_user.projects.count-2).each do |project| %>
-          <div class="row first-project">
-              <div class="col-md-6 p-0">
-                <%= image_tag(project.image, class: "image-fluid", alt: project.title) %>
-              </div>
-              <div class="col-md-6 p-0">
-                <div class="residents">
-                  <p><%= project.created_at.mday %>/<%= project.created_at.month %>/<%= project.created_at.year %></p>
-                  <h1><%= project.title %></h1>
-                  <p><%= project.description %></p>
-                  <div class="d-flex">
-                    <%= link_to "Show", latest_project_path(project), class: "btn-posts-card" %>
-                    <%= link_to "Edit", edit_project_path(project), class: "btn-posts-card" %>
-                    <%= button_to "Delete", project_path(project), method: :delete, class: "btn-posts-card-delete ms-4" %>
-                  </div>
+
+    <!-- Cards for Projects -->
+    <div class="card-container my-5">
+        <div class="d-flex justify-content-center flex-wrap card-holder">
+          <% current_user.projects.first(4).each do |project| %>
+            <div class="card" style="width: 18rem;">
+              <%= image_tag(project.image, class: "card-img-top image-fluid", alt: project.title) %>
+              <div class="card-body d-flex flex-column justify-content-between">
+                <h5 class="card-title mt-3"><%= project.title %></h5>
+                <p class="card-text"><%= project.description %></p>
+                <div class="d-flex">
+                  <%= link_to "Show", latest_project_path(project), class: "btn mx-1" %>
+                  <%= link_to "Edit", edit_project_path(project), class: "btn mx-1" %>
+                  <%= button_to "Delete", project_path(project), method: :delete, class: "btn btn-danger mx-1" %>
                 </div>
               </div>
+            </div>
+          <% end %>
+        </div>
+        <% if current_user.projects.count > 4 %>  
+          <div class="d-flex justify-content-end my-5">
+            <button class="btn btn-edit" type="button" data-bs-toggle="collapse" data-bs-target=".collapse2" aria-controls="collapseExample" aria-expanded="false" aria-label="Toggle cards">
+                Load More
+            </button>
+          </div>
+          <div class="collapse collapse2 mt-5">
+              <div class="d-flex justify-content-center flex-wrap card-holder">
+                <% current_user.projects.slice(4, current_user.projects.count-4).each do |project| %>
+                  <div class="card" style="width: 18rem;">
+                    <%= image_tag(project.image, class: "card-img-top image-fluid", alt: project.title) %>
+                    <div class="card-body d-flex flex-column justify-content-between">
+                      <h5 class="card-title mt-3"><%= project.title %></h5>
+                      <p class="card-text"><%= project.description %></p>
+                      <div class="d-flex">
+                        <%= link_to "Show", latest_project_path(project), class: "btn mx-1" %>
+                        <%= link_to "Edit", edit_project_path(project), class: "btn mx-1" %>
+                        <%= button_to "Delete", project_path(project), method: :delete, class: "btn btn-danger mx-1" %>
+                      </div>
+                    </div>
+                  </div>
+                <% end %>
+              </div>
           </div>
         <% end %>
-        <!-- Card for fisrt project -->
-        <% end %>
-      </div>
-
-    <!-- End Tourist Guide Items -->
+    </div>
+    <!-- End Cards -->
 </div>

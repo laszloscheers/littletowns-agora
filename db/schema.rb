@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_08_09_175513) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_04_155657) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -48,6 +48,10 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_09_175513) do
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "address"
+    t.string "email"
+    t.integer "phone_number"
+    t.string "opening_hours"
     t.index ["user_id"], name: "index_businesses_on_user_id"
   end
 
@@ -78,6 +82,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_09_175513) do
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "address"
     t.index ["user_id"], name: "index_projects_on_user_id"
   end
 
@@ -89,6 +94,10 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_09_175513) do
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "address"
+    t.string "email"
+    t.integer "phone_number"
+    t.string "opening_hours"
     t.index ["user_id"], name: "index_tourist_guide_items_on_user_id"
   end
 
