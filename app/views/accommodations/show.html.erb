@@ -148,6 +148,6 @@
         iconSize:     [50, 50], // size of the icon
         popupAnchor:  [0, -25] // point from which the popup should open relative to the iconAnchor
     });
-    L.marker(['<%= @business.latitude %>', '<%= @business.longitude %>'], {icon: greenIcon}).addTo(map).bindPopup('<h5><%= @business.title %></h5>');
+    L.marker(['<%= @business.latitude %>', '<%= @business.longitude %>'], {icon: greenIcon}).addTo(map).bindPopup('<h5><%= @business.title %></h5>').openPopup();
 
 </script>

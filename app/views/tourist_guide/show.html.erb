@@ -7,12 +7,16 @@
       margin: 0% 7% 0% 7%;
     }
   }
-  a{
+  a, .map-links{
     text-decoration: none;
     color: #18654e;
   }
-  a:hover{
+  a:hover, .map-links:hover{
     color: #ffc107;
+  }
+  .leaflet-container a {
+    text-decoration: none;
+    color: #18654e;
   }
   .first-project{
     margin: 4% 0% 5% 0%;
@@ -41,6 +45,9 @@
   }
   .first-project a{
     margin-left: 5%;
+  }
+  .info{
+    color:rgba(0, 0, 0, 0.55);;
   }
   @media(max-width:1622px){
     .first-project p, .breadcrum{
@@ -111,6 +118,12 @@
           <div class="d-flex breadcrum"><%= link_to "Tourist Guide", tourist_guide_index_path, class: "me-2" %><span class="me-2">/</span><%= @item.title %></div>
           <h1><%= @item.title %></h1>
           <p><%= @item.description %></p>
+          <p>Address:</p>
+          <p class="mt-0 mb-2"><span class="info"><%= @item.address %><span></p>
+          <p class="mt-0 mb-2">Email: <span><%= link_to "mail_to:#{@item.email}", class: "ms-0" do %><%= @item.email %><% end %><span></p>
+          <p class="mt-0">Phone: <span><%= link_to "tel:#{@item.phone_number}", class: "ms-0" do %><%= @item.phone_number %><% end %><span></p>
+          <p class="mt-2">Opening hours:</p>
+          <p class="mt-0"><span class="info"><%= @item.opening_hours %><span></p>
         </div>
       </div>
       <div class="col-xl-6 p-0">
@@ -141,6 +154,6 @@
         iconSize:     [50, 50], // size of the icon
         popupAnchor:  [0, -25] // point from which the popup should open relative to the iconAnchor
     });
-    L.marker(['<%= @item.latitude %>', '<%= @item.longitude %>'], {icon: greenIcon}).addTo(map).bindPopup('<h5><%= @item.title %></h5>');
+    L.marker(['<%= @item.latitude %>', '<%= @item.longitude %>'], {icon: greenIcon}).addTo(map).bindPopup('<h5><%= @item.title %></h5><p class="mb-0">Address:</p><p class="mt-0 mb-2 info"><%= @item.address %></p><p class="mt-0 mb-2">Email: <span><%= link_to "mail_to:#{@item.email}", class: "ms-0 map-links" do %><%= @item.email %><% end %><span></p><p class="mt-0 mb-2">Phone: <span><%= link_to "tel:#{@item.phone_number}", class: "ms-0 map-links" do %><%= @item.phone_number %><% end %><span></p><p class="my-0">Opening hours:</p><p class="mt-0"><span class="info"><%= @item.opening_hours %><span></p>').openPopup();
 
 </script>

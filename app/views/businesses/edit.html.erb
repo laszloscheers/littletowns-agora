@@ -72,6 +72,26 @@
                   <%= form.text_field :description, class: "form-control", :required => true %>
                 </div>
                 <br/>
+                <div class="form-group">
+                  <%= form.label :address, style: "display: block" %>
+                  <%= form.text_field :address, class: "form-control", :required => true %>
+                </div>
+                <br/>
+                <div class="form-group">
+                  <%= form.label :email, style: "display: block" %>
+                  <%= form.text_field :email, class: "form-control", :required => true %>
+                </div>
+                <br/>
+                <div class="form-group">
+                  <%= form.label :phone_number, style: "display: block" %>
+                  <%= form.text_field :phone_number, class: "form-control", :required => true %>
+                </div>
+                <br/>
+                <div class="form-group">
+                  <%= form.label :opening_hours, style: "display: block" %>
+                  <%= form.text_field :opening_hours, class: "form-control", :required => true %>
+                </div>
+                <br/>
                 <div class="dropdown">
                   <%= form.label :type_of_business, style: "display: block" %>
                   <%= form.select(:type_of_business, [["Restaurant", "Restaurant"], ["Pub", "Pub"], ["Accommodation", "Accommodation"]], {include_blank: "Select one"}, { :required => true}) %>
