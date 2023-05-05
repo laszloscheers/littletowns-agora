@@ -12,7 +12,7 @@
     color: #18654e;
   }
   a:hover, .map-links:hover{
-    color: #ffc107;
+    color: rgba(0, 0, 0, 0.7);
   }
   .leaflet-container a {
     text-decoration: none;
@@ -119,7 +119,8 @@
           <h1><%= @item.title %></h1>
           <p><%= @item.description %></p>
           <p>Address:</p>
-          <p class="mt-0 mb-2"><span class="info"><%= @item.address %><span></p>
+          <p class="mt-0"><span class="info"><%= @item.address %><span></p>
+          <p class="mt-1 mb-3"><%= link_to "#{@item.google_link}", target: "_blank", class: "ms-0" do %><i class="fa fa-map-marker" aria-hidden="true"></i> Find it on Google maps<% end %></p>
           <p class="mt-0 mb-2">Email: <span><%= link_to "mail_to:#{@item.email}", class: "ms-0" do %><%= @item.email %><% end %><span></p>
           <p class="mt-0">Phone: <span><%= link_to "tel:#{@item.phone_number}", class: "ms-0" do %><%= @item.phone_number %><% end %><span></p>
           <p class="mt-2">Opening hours:</p>
@@ -154,6 +155,6 @@
         iconSize:     [50, 50], // size of the icon
         popupAnchor:  [0, -25] // point from which the popup should open relative to the iconAnchor
     });
-    L.marker(['<%= @item.latitude %>', '<%= @item.longitude %>'], {icon: greenIcon}).addTo(map).bindPopup('<h5><%= @item.title %></h5><p class="mb-0">Address:</p><p class="mt-0 mb-2 info"><%= @item.address %></p><p class="mt-0 mb-2">Email: <span><%= link_to "mail_to:#{@item.email}", class: "ms-0 map-links" do %><%= @item.email %><% end %><span></p><p class="mt-0 mb-2">Phone: <span><%= link_to "tel:#{@item.phone_number}", class: "ms-0 map-links" do %><%= @item.phone_number %><% end %><span></p><p class="my-0">Opening hours:</p><p class="mt-0"><span class="info"><%= @item.opening_hours %><span></p>').openPopup();
+    L.marker(['<%= @item.latitude %>', '<%= @item.longitude %>'], {icon: greenIcon}).addTo(map).bindPopup('<h5><%= @item.title %></h5><p class="mb-0">Address:</p><p class="my-0"><span class="info"><%= @item.address %><span></p><p class="mt-1 mb-3"><%= link_to "#{@item.google_link}", target: "_blank", class: "ms-0 map-links" do %><i class="fa fa-map-marker" aria-hidden="true"></i> Find it on Google maps<% end %></p><p class="mt-0 mb-2">Email: <span><%= link_to "mail_to:#{@item.email}", class: "ms-0 map-links" do %><%= @item.email %><% end %><span></p><p class="mt-0 mb-2">Phone: <span><%= link_to "tel:#{@item.phone_number}", class: "ms-0 map-links" do %><%= @item.phone_number %><% end %><span></p><p class="my-0">Opening hours:</p><p class="mt-0"><span class="info"><%= @item.opening_hours %><span></p>').openPopup();
 
 </script>

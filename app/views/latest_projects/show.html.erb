@@ -17,7 +17,18 @@
     color: #18654e;
   }
   a:hover{
-    color: #ffc107;
+    color: rgba(0, 0, 0, 0.7);
+  }
+  .map-links{
+    text-decoration: none;
+    color: #18654e;
+  }
+  .map-links:hover{
+    color: rgba(0, 0, 0, 0.7);
+  }
+  .leaflet-container a {
+    text-decoration: none;
+    color: #18654e;
   }
   span{
     color: #18654e;
@@ -135,7 +146,8 @@
           <h1><%= @project.title %></h1>
           <p><%= @project.description %></p>
           <p>Address:</p>
-          <p class="mt-0"><span id="address"><%= @project.address %><span></p>
+          <p class="mt-0"><span class="info"><%= @project.address %><span></p>
+          <p class="mt-1 mb-3"><%= link_to "#{@project.google_link}", target: "_blank", class: "ms-0" do %><i class="fa fa-map-marker" aria-hidden="true"></i> Find it on Google maps<% end %></p>
         </div>
       </div>
       <div class="col-md-6 p-0 d-flex align-items-center justify-conten-center">
@@ -165,6 +177,6 @@
         iconSize:     [50, 50], // size of the icon
         popupAnchor:  [0, -25] // point from which the popup should open relative to the iconAnchor
     });
-    L.marker(['<%= @project.latitude %>', '<%= @project.longitude %>'], {icon: greenIcon}).addTo(map).bindPopup('<h5><%= @project.title %></h5><p class="mb-0">Address:</p><p class="mt-0"><%= @project.address %></p>').openPopup();
+    L.marker(['<%= @project.latitude %>', '<%= @project.longitude %>'], {icon: greenIcon}).addTo(map).bindPopup('<h5><%= @project.title %></h5><p class="mb-0">Address:</p><p class="mt-0"><span id="address"><%= @project.address %><span></p><p class="mt-1 mb-3"><%= link_to "#{@project.google_link}", target: "_blank", class: "ms-0 map-links" do %><i class="fa fa-map-marker" aria-hidden="true"></i> Find it on Google maps<% end %></p>').openPopup();
 
 </script>

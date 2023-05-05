@@ -3,7 +3,17 @@
     background-color: #ede7dc;
   }
   .forum-content{
-    margin: 0% 25% 5% 15%;
+    margin: 0% 23% 5% 23%;
+  }
+  @media(max-width:1510px){
+    .forum-content{
+      margin: 0% 20% 5% 20%;
+    }
+  }
+  @media(max-width:992px){
+    .forum-content{
+      margin: 0% 15% 5% 15%;
+    }
   }
   @media(max-width:476px){
     .forum-content{
@@ -11,7 +21,7 @@
     }
   }
   .jumbotron{
-    margin: 7% 40% 2% 0%;
+    margin: 10% 40% 2% 0%;
   }
   .jumbotron h1{
     font-size:2.3vw;
@@ -72,7 +82,7 @@
     font-size:0.9vw;
   }
   .card-body a:hover{
-    color: #ffc107;
+    color: rgba(0, 0, 0, 0.7);
   }
   @media(max-width:1450px){
     .card-body a{
@@ -109,9 +119,9 @@
       <div class="d-flex flex-wrap">
           <% @posts.first(4).each do |post| %>
             <div class="card mb-5" style="width: 100%;">
-              <div class="card-body">
+              <div class="card-body p-5">
                 <p><%= post.created_at.mday %>/<%= post.created_at.month %>/<%= post.created_at.year %></p>
-                <h5 class="card-title"><%= post.title %></h5>
+                <h4 class="card-title mb-3"><%= post.title %></h4>
                 <p class="card-text"><%= post.description %></p>
                 <p>By: <%= post.user.name %> <%= post.user.surname %></p>
                 <%= link_to "Read more", forum_path(post) %>

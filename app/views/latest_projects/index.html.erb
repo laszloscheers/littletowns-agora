@@ -9,6 +9,17 @@
     width: 100%;
     height: 100%;
   }
+  .map-links{
+    text-decoration: none;
+    color: #18654e;
+  }
+  .map-links:hover{
+    color: rgba(0, 0, 0, 0.7);
+  }
+  .leaflet-container a {
+    text-decoration: none;
+    color: #18654e;
+  }
   @media(max-width:1600px){
     .latest-projects-content{
       margin: 0% 15% 0% 15%;
@@ -220,7 +231,7 @@
     font-size:0.9vw;
   }
   .card-body a:hover, .residents a:hover, .map-button:hover{
-    color: #ffc107;
+    color: rgba(0, 0, 0, 0.7);
   }
   @media(max-width:1622px){
     .card-body a, .residents a{
@@ -354,6 +365,6 @@
 
 <% @projects.each do |projects| %>
     <script>
-        L.marker(['<%= projects.latitude %>', '<%= projects.longitude %>'], {icon: greenIcon}).addTo(map).bindPopup('<%= link_to latest_project_path(projects), class: "map-button" do %><h5 class="mt-4"><%= projects.title %></h5><p class="mb-0">Address:</p><p class="mt-0"><span id="address"><%= projects.address %><span></p><% end %>');
+        L.marker(['<%= projects.latitude %>', '<%= projects.longitude %>'], {icon: greenIcon}).addTo(map).bindPopup('<%= link_to latest_project_path(projects), class: "map-button" do %><h5 class="mt-4"><%= projects.title %></h5><% end %><p class="mb-0">Address:</p><p class="mt-0"><span id="address"><%= projects.address %><span></p><p class="mt-1 mb-3"><%= link_to "#{projects.google_link}", target: "_blank", class: "ms-0 map-links" do %><i class="fa fa-map-marker" aria-hidden="true"></i> Find it on Google maps<% end %></p>');
     </script>
 <% end %>
