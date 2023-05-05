@@ -1,9 +1,80 @@
-<h1>New comment</h1>
+<style>
+  body{
+    background-color: #ede7dc;
+  }
+  .btn{
+    border-style: solid;
+    border-radius: 5px;
+    border-width:2px;
+    border-color: #18654e;
+    background-color: #18654e;
+    color:#ffff;
+    transition: none;
+  }
+  .btn:hover{
+    background-color: #ffff;
+    color:#18654e;
+    transition: none;
+  }
+  a{
+    text-decoration: none;
+    color: #18654e;
+  }
+  a:hover{
+    color: rgba(0, 0, 0, 0.7);
+  }
+  .card{
+    min-height: 350px; 
+  }
+  @media(max-width:512px){
+    .card{
+      margin-left:0 !important;
+      margin-right:0!important;
+    }
+    .ms-5{
+    margin-left:1% !important;
 
-<%= render "form", comment: @comment %>
+    }
+  }
+</style>
+<div class=" my-5 d-flex justify-content-center">
+    <div class="px-5 pb-5 pt-4" style="width: 40rem;">
+        <div class="card mt-5 mb-3">
+            <div class="card-body new-comment d-flex flex-column justify-content-between p-5">
+                <h3>Add your comments to this topic</h3>
+                <%= form_with(model: @comment) do |form| %>
+                        <% if @comment.errors.any? %>
+                            <div style="color: red">
+                                <h2><%= pluralize(@comment.errors.count, "error") %> prohibited this @comment from being saved:</h2>
 
-<br>
-
-<div>
-  <%= link_to "Back to comments", comments_path %>
+                                <ul>
+                                <% @comment.errors.each do |error| %>
+                                    <li><%= error.full_message %></li>
+                                <% end %>
+                                </ul>
+                            </div>
+                        <% end %>
+                        <div class="form-group" >
+                            <div>
+                                <%= form.label :title, style: "display: none" %>
+                                <%= form.text_field :title, class: "form-control", :required => true %>
+                            </div>
+                            <br/>
+                            <div>
+                                <%= form.label :post_id, style: "display: none" %>
+                                <%= form.text_field :post_id, id: :post_user_id, value: @post_id, type: :hidden %>
+                            </div>
+                            <br/>
+                            <div>
+                                <%= form.label :user_id, style: "display: none" %>
+                                <%= form.number_field :user_id, id: :post_user_id, value: current_user.id, type: :hidden %>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-end">
+                                <%= link_to "Back to Posts", forum_index_path %> <%= form.submit  "Comment Post", class: "btn" %>
+                            </div>
+                        </div>
+                <% end %>
+            </div>
+        </div>
+    </div>
 </div>

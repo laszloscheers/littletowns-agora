@@ -12,14 +12,14 @@
     color: #18654e;
   }
   a:hover{
-    color: #ffc107;
+    color: rgba(0, 0, 0, 0.7);
   }
   .map-links{
     text-decoration: none;
     color: #18654e;
   }
   .map-links:hover{
-    color: #ffc107;
+    color: rgba(0, 0, 0, 0.7);
   }
   .leaflet-container a {
     text-decoration: none;
@@ -133,7 +133,8 @@
             <h1><%= @business.title %></h1>
             <p><%= @business.description %></p>
             <p>Address:</p>
-            <p class="mt-0 mb-2"><span class="info"><%= @business.address %><span></p><%= link_to "Find on Google Maps", "https://www.google.com/maps/place/53%C2%B016'26.8%22N+6%C2%B051'39.3%22W/@53.2741143,-6.8634916,17z/data=!3m1!4b1!4m13!1m8!3m7!1s0x485d80ce58fe8a9d:0x65b87cfc207d6176!2sLittletown,+Co.+Kildare,+Ireland!3b1!8m2!3d53.2736774!4d-6.8545886!16s%2Fg%2F119x1yyfm!3m3!8m2!3d53.2741111!4d-6.8609167", target: "_blank" %>
+            <p class="mt-0"><span class="info"><%= @business.address %><span></p>
+            <p class="mt-1 mb-3"><%= link_to "#{@business.google_link}", target: "_blank", class: "ms-0" do %><i class="fa fa-map-marker" aria-hidden="true"></i> Find it on Google maps<% end %></p>
             <p class="mt-0 mb-2">Email: <span><%= link_to "mail_to:#{@business.email}", class: "ms-0" do %><%= @business.email %><% end %><span></p>
             <p class="mt-0">Phone: <span><%= link_to "tel:#{@business.phone_number}", class: "ms-0" do %><%= @business.phone_number %><% end %><span></p>
             <p class="mt-2">Opening hours:</p>
@@ -168,6 +169,6 @@
         iconSize:     [50, 50], // size of the icon
         popupAnchor:  [0, -25] // point from which the popup should open relative to the iconAnchor
     });
-    L.marker(['<%= @business.latitude %>', '<%= @business.longitude %>'], {icon: greenIcon}).addTo(map).bindPopup('<h5><%= @business.title %></h5><p class="mb-0">Address:</p><p class="mt-0 mb-2 info"><%= @business.address %></p><p class="mt-0 mb-2">Email: <span><%= link_to "mail_to:#{@business.email}", class: "ms-0 map-links" do %><%= @business.email %><% end %><span></p><p class="mt-0 mb-2">Phone: <span><%= link_to "tel:#{@business.phone_number}", class: "ms-0 map-links" do %><%= @business.phone_number %><% end %><span></p><p class="my-0">Opening hours:</p><p class="mt-0"><span class="info"><%= @business.opening_hours %><span></p>').openPopup();
+    L.marker(['<%= @business.latitude %>', '<%= @business.longitude %>'], {icon: greenIcon}).addTo(map).bindPopup('<h5><%= @business.title %></h5><p class="mb-0">Address:</p><p class="my-0"><span class="info"><%= @business.address %><span></p><p class="mt-1 mb-3"><%= link_to "#{@business.google_link}", target: "_blank", class: "ms-0 map-links" do %><i class="fa fa-map-marker" aria-hidden="true"></i> Find it on Google maps<% end %></p><p class="mt-0 mb-2">Email: <span><%= link_to "mail_to:#{@business.email}", class: "ms-0 map-links" do %><%= @business.email %><% end %><span></p><p class="mt-0 mb-2">Phone: <span><%= link_to "tel:#{@business.phone_number}", class: "ms-0 map-links" do %><%= @business.phone_number %><% end %><span></p><p class="my-0">Opening hours:</p><p class="mt-0"><span class="info"><%= @business.opening_hours %><span></p>').openPopup();
 
 </script>

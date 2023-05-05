@@ -19,7 +19,7 @@
     color: #18654e;
   }
   a:hover{
-    color: #ffc107;
+    color: rgba(0, 0, 0, 0.7);
   }
   .dropdown select{
     border-style: solid;
@@ -75,6 +75,11 @@
                 <div class="form-group">
                   <%= form.label :address, style: "display: block" %>
                   <%= form.text_field :address, class: "form-control", :required => true %>
+                </div>
+                <br/>
+                <div class="form-group">
+                  <%= form.label :google_link, style: "display: block" %>
+                  <%= form.text_field :google_link, class: "form-control", :required => true %>
                 </div>
                 <br/>
                 <div class="form-group">
