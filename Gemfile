@@ -50,13 +50,12 @@ gem 'devise', '~> 4.8', '>= 4.8.1'
 # gem 'devise-bootstrapped', '~> 0.1.1'
 
 # Gem for database management
-gem "sqlite3", "~> 1.4"
+gem 'sqlite3', '~> 1.3', '>= 1.3.11'
 gem "rake"
 
 # Gem for Google Cloud Storage Service for images uploaded from the live app server
 gem "google-cloud-storage"
 
-gem "sqlite3", "~> 1.4"
 
 # Use Sass to process CSS
 # gem "sassc-rails"
@@ -95,3 +94,5 @@ group :test do
   gem "selenium-webdriver"
   gem "webdrivers"
 end
+
+gem "dockerfile-rails", ">= 1.2", :group => :development
