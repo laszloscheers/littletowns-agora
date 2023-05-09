@@ -37,7 +37,9 @@
     padding: 4%;
   }
 </style>
-
+<% if notice %>
+  <%= render 'partials/alerts' %>
+<% end %>
 <div class=" my-5 d-flex justify-content-center">
   <div class="px-5 pb-5 pt-4" style="width: 40rem;">
     <div class="card mt-5 mb-3">
