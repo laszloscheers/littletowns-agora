@@ -14,8 +14,10 @@ Rails.application.routes.draw do
   resources :projects, only:[:new, :create, :edit, :update, :destroy]
   resources :businesses, only:[:new, :create, :edit, :update, :destroy]
   resources :tourist_guide_items, only:[:new, :create, :update, :edit, :destroy]
-  devise_for :users
-
+  devise_for :users, controllers: {
+    registrations: :my_registrations
+  }
+  
   # Defines the root path route ("/")
   root "home#index"
 

@@ -2,12 +2,15 @@
   body{
     background-color: #f2f2f2;
   }
-  .forum-content{
+  .forum-main-content{
     margin: 5% 10% 5% 10%;
+  }
+  .forum-content{
+    margin: 5% 10% 5% 4%;
   }
 
   @media(max-width:476px){
-    .forum-content{
+    .forum-content, .forum-main-content{
       margin: 0% 10% 5% 10%;
     }
   }
@@ -107,11 +110,6 @@
     width:100%;
     height:40px;
   }
-  .residents a{
-    text-decoration: none;
-    color: #18654e;
-    font-size:0.9vw;
-  }
   .card{
     margin: 3% 3% 3% 3%;
   }
@@ -131,38 +129,12 @@
     border-style: none;
     background-color: transparent;
   }
-  @media(max-width:1622px){
-    .residents a{
-      font-size:1.3vw;
-    }
-  }
-  @media(max-width:1242px){
-    .residents a{
-      font-size:1.5vw;
-    }
-  }
   @media(max-width:991px){
-    .residents a{
-      font-size:2.1vw;
-    }
     .btn-new{
       margin-top: 10%;
     }
   }
-  @media(max-width:720px){
-    .residents a{
-      font-size:2.3vw;
-    }
-  }
-  @media(max-width:578px){
-    .residents a{
-      font-size:2.7vw;
-    }
-  }
   @media(max-width:454px){
-    .residents a{
-      font-size:4vw;
-    }
     .btn-new{
       margin-top: 10%;
     }
@@ -229,7 +201,7 @@
     width: 100%;
   }
 </style>
-<div class="forum-content" >
+<div class="forum-main-content" >
     <!-- Jumbotron for Latest Projects -->
     <div class="text-left jumbotron">
         <h1>Welcome to the Admin Area!</h1>
