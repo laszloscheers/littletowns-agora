@@ -3,16 +3,10 @@ class PostsController < ApplicationController
   protect_from_forgery with: :exception
   
   before_action :set_post, only: %i[ show edit update destroy ]
-  # Validates that any user is signed in, otherwise redirects to the 'Sign In' page.
-  before_action :authenticate_user!
-  before_action :validate_role
 
-  # Validates that the user is a Regular User
-  def validate_role
-    if !current_user.user?
-      redirect_to(root_path)
-    end
-  end
+  # Validates that any user is signed in, otherwise redirects to the 'Sign In' page.
+  before_action :authenticate_user!, only: %i[ new create edit update destroy ]
+  before_action :validate_role, only: %i[ new create edit update destroy ]
 
   # GET /posts or /posts.json
   def index
@@ -79,5 +73,13 @@ class PostsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def post_params
       params.require(:post).permit(:title, :description, :user_id)
+    end
+
+    private
+    # Validates that the user is a Regular User
+    def validate_role
+      if !current_user.user?
+        redirect_to root_path, notice: "You have to be a regular user to post."
+      end
     end
 end

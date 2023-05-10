@@ -7,12 +7,6 @@ class ProjectsController < ApplicationController
   before_action :authenticate_user!
   before_action :validate_role
 
-  # Validates that the user is a Web Page Administrator
-  def validate_role
-    if !current_user.admin?
-      redirect_to(root_path)
-    end
-  end
 
   # GET /projects or /projects.json
   def index
@@ -79,5 +73,11 @@ class ProjectsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def project_params
       params.require(:project).permit(:title, :description, :address, :google_link, :latitude, :longitude, :user_id, :image)
+    end
+    # Validates that the user is a Web Page Administrator
+    def validate_role
+      if !current_user.admin?
+        redirect_to(root_path)
+      end
     end
 end

@@ -5,12 +5,6 @@ class MyAreaController < ApplicationController
   before_action :authenticate_user!
   before_action :validate_role
   
-  # Validates that the user is a Web Page Administrator
-  def validate_role
-    if !current_user.user?
-      redirect_to(root_path)
-    end
-  end
   def index
     def destroy
       @post.destroy
@@ -21,4 +15,11 @@ class MyAreaController < ApplicationController
       end
     end
   end
+  private
+    # Validates that the user is a Web Page Administrator
+    def validate_role
+      if !current_user.user?
+        redirect_to(root_path)
+      end
+    end
 end
