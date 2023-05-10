@@ -35,15 +35,21 @@
   }
 </style>
 
+<% if resource.errors.any? %>
+  <%= render "devise/shared/error_messages", resource: resource %>
+<% end %>
+
 <div class=" my-5 d-flex justify-content-center">
-<div class=" px-5 pb-5 pt-4" style="width: 40rem;">
+<div class=" px-5 pb-5 pt-4" style="min-width: 40rem">
   <div class="card  mx-5 mt-5 mb-3">
     <div class="card-header">
       <h2>Sign up</h2>
     </div>
     <div class="card-body">
       <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-        <%= render "devise/shared/error_messages", resource: resource %>
+
+
+        
         <div class="form-group">
           <%= f.label :name %><br />
           <%= f.text_field :name, autofocus: false, class: 'form-control', placeholder: "John" %>

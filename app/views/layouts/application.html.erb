@@ -14,7 +14,6 @@
     <!-- Stylesheets and js for application.html.erb that loads Bootstrap styles and js-->
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", "data-turbolinks-eval": "false", defer: true %>
-
     <!-- Stylesheets PT Serif font that is contained in the public folder -->
     <%= stylesheet_link_tag "fonts" %>
 
@@ -29,10 +28,13 @@
   <body>
     <!-- Renders navbar from partials-->
     <%= render partial: 'partials/navbar' %>
-    
-    <!-- Renders a custom notice layout if a notice is generated-->
+
     <% if notice %>
-      <%= render 'partials/alerts' %>
+      <%= render 'partials/notice' %>
+    <% end %>
+
+    <% if alert %>
+      <%= render 'partials/alert' %>
     <% end %>
 
     <%= yield %>

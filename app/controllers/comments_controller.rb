@@ -10,7 +10,7 @@ class CommentsController < ApplicationController
   # Validates that the user is a Regular User
   def validate_role
     if !current_user.user?
-      redirect_to(root_path)
+      format.html { redirect_to(root_path), notice: "You have to be a regular user to comment." }
     end
   end
 
