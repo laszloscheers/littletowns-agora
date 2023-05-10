@@ -80,4 +80,10 @@ class BusinessesController < ApplicationController
     def business_params
       params.require(:business).permit(:title, :description, :address, :google_link, :email, :phone_number, :opening_hours, :type_of_business, :latitude, :longitude, :user_id, :image)
     end
+    # Validates that the user is a Regular User
+    def validate_role
+      if !current_user.user?
+        redirect_to root_path, notice: "You have to be a regular user to comment"
+      end
+    end
 end

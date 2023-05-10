@@ -1,4 +1,7 @@
 class TurboDeviseController < ApplicationController
+    # Prevents CSRF attacks by raising an exception.
+    protect_from_forgery with: :exception
+    
     class Responder < ActionController::Responder
       def to_turbo_stream
         controller.render(options.merge(formats: :html))

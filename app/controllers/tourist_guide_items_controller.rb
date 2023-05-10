@@ -7,12 +7,6 @@ class TouristGuideItemsController < ApplicationController
   before_action :authenticate_user!
   before_action :validate_role
   
-  # Validates that the user is a Web Page Administrator
-  def validate_role
-    if !current_user.admin?
-      redirect_to(root_path)
-    end
-  end
 
   # GET /tourist_guide_items or /tourist_guide_items.json
   def index
@@ -79,5 +73,11 @@ class TouristGuideItemsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def tourist_guide_item_params
       params.require(:tourist_guide_item).permit(:title, :description, :address, :google_link, :email, :phone_number, :opening_hours, :latitude, :longitude, :user_id, :image)
+    end
+    # Validates that the user is a Web Page Administrator
+    def validate_role
+      if !current_user.admin?
+        redirect_to(root_path)
+      end
     end
 end

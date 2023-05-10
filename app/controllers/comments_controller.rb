@@ -3,16 +3,10 @@ class CommentsController < ApplicationController
   protect_from_forgery with: :exception
   
   before_action :set_comment, only: %i[ show edit update destroy ]
-  # Validates that any user is signed in, otherwise redirects to the 'Sign In' page.
-  before_action :authenticate_user!
-  before_action :validate_role
 
-  # Validates that the user is a Regular User
-  def validate_role
-    if !current_user.user?
-      format.html { redirect_to(root_path), notice: "You have to be a regular user to comment." }
-    end
-  end
+  # Validates that any user is signed in, otherwise redirects to the 'Sign In' page.
+  before_action :authenticate_user!, only: %i[ new create edit update destroy ]
+  before_action :validate_role, only: %i[ new create edit update destroy ]
 
   # GET /comments or /comments.json
   def index
@@ -80,5 +74,11 @@ class CommentsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def comment_params
       params.require(:comment).permit(:title, :post_id, :user_id)
+    end
+    # Validates that the user is a Regular User
+    def validate_role
+      if !current_user.user?
+        redirect_to root_path, notice: "You have to be a regular user to comment."
+      end
     end
 end
