@@ -14,7 +14,7 @@ Devise.setup do |config|
   # confirmation, reset password and unlock tokens in the database.
   # Devise will use the `secret_key_base` as its `secret_key`
   # by default. You can change it below and use your own secret key.
-  # config.secret_key = 'c48f00b6de084dc4679ca29c8347563047adfe97128bc350d6ec3578e5746d45f5b9f63edcf3637fda0480a8835bb185e48796e6cbdd48d918a70b026efe86be'
+  # config.secret_key = '798a40b116a4ad00323dd9a439ae506006d1dac76883ee4b95a4857f74b710e83fa3aa238806526ad3a58425f7f34d221aac3cf95285f3b35d74726ae0d50c89'
 
   # ==> Controller configuration
   # Configure the parent class to the devise controllers.
@@ -126,7 +126,7 @@ Devise.setup do |config|
   config.stretches = Rails.env.test? ? 1 : 12
 
   # Set up a pepper to generate the hashed password.
-  # config.pepper = '22083c2cdcad93a84760a0fea136f6c2c0583040e25d38a81d5ccf1d07039587bd5d0be774b8ec29e059dcf202a34602fab429ec5da72a1684b679a7e3686b96'
+  # config.pepper = '1ab3b70fab858f5b88d03bfd94b95f6f8cae576819bb45abeb15c803e27ab0ddfdfa40436af9d9fa1c7cee2680468f097842f3c0fab20439af06546bcc89b828'
 
   # Send a notification to the original email when the user's email is changed.
   # config.send_email_changed_notification = false
@@ -308,4 +308,28 @@ Devise.setup do |config|
   # When set to false, does not sign a user in automatically after their password is
   # changed. Defaults to true, so a user is signed in automatically after changing a password.
   # config.sign_in_after_change_password = true
+
+  # ! Create custom failure for turbo
+  class TurboFailureApp < Devise::FailureApp
+    def respond
+      if request_format == :turbo_stream
+        redirect
+      else
+        super
+      end
+    end
+
+    def skip_format?
+      %w(html turbo_stream */*).include? request_format.to_s
+    end
+  end
+
+  Devise.setup do |config|
+    config.parent_controller = 'TurboDeviseController'
+    config.navigational_formats = ['*/*', :html, :turbo_stream]
+    config.warden do |manager|
+      manager.failure_app = TurboFailureApp
+    end
+  end
+  
 end

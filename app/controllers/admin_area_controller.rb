@@ -1,4 +1,7 @@
 class AdminAreaController < ApplicationController
+  # Prevents CSRF attacks by raising an exception.
+  protect_from_forgery with: :exception
+  
   before_action :authenticate_user!
   before_action :validate_role
   
