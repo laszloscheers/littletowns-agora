@@ -7,13 +7,6 @@ class BusinessesController < ApplicationController
   before_action :authenticate_user!
   before_action :validate_role
 
-  # Validates that the user is a Business Moderator
-  def validate_role
-    if !current_user.moderator?
-      redirect_to(root_path)
-    end
-  end
-
   # GET /businesses or /businesses.json
   def index
     @businesses = Business.all
@@ -82,7 +75,7 @@ class BusinessesController < ApplicationController
     end
     # Validates that the user is a Regular User
     def validate_role
-      if !current_user.user?
+      if !current_user.moderator?
         redirect_to root_path, notice: "You have to be a regular user to comment"
       end
     end

@@ -140,9 +140,9 @@
           <div class="d-flex flex-wrap">
             <% @posts.slice(4, @posts.count-4).each do |post| %>
               <div class="card mb-5" style="width: 100%;">
-                <div class="card-body">
+                <div class="card-body p-5">
                   <p><%= post.created_at.mday %>/<%= post.created_at.month %>/<%= post.created_at.year %></p>
-                  <h5 class="card-title"><%= post.title %></h5>
+                  <h4 class="card-title mb-3"><%= post.title %></h4>
                   <p class="card-text"><%= post.description %></p>
                   <p>By: <%= post.user.name %> <%= post.user.surname %></p>
                   <%= link_to "Read more", forum_path(post) %>
