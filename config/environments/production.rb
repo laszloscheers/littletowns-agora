@@ -94,12 +94,12 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { host: 'https://littletownsagora.fly.dev/' }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    address: "smtp-relay.sendinblue.com",
+    address: "smtp.office365.com",
     port: 587,
     domain: "littletownsagora.fly.dev",
-    authentication: "plain",
+    authentication: :login,
     enable_starttls_auto: true,
-    user_name: "laszloluque@gmail.com",
-    password: "Lkw2BtsMgIqP37fA"
+    user_name: "littletownsagora@hotmail.com",
+    password: ""
   }
 end
