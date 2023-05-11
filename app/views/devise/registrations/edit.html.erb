@@ -99,7 +99,7 @@
           <% end %>
           <%= f.password_field :password, autocomplete: "new-password", class: "form-control" %>
           <% if @minimum_password_length %>
-            <em><%= @minimum_password_length %> characters minimum</em>
+            <%= @minimum_password_length %> characters minimum
           <% end %>
         </div>
         <div class="field form-group m-2">
