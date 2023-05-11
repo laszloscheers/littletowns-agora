@@ -100,6 +100,6 @@ Rails.application.configure do
     authentication: "plain",
     enable_starttls_auto: true,
     user_name: "laszloluque@gmail.com",
-    password: ""
+    password: "Lkw2BtsMgIqP37fA"
   }
 end
