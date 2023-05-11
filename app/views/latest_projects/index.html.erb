@@ -113,6 +113,21 @@
     transform: scale(1.04);
     transition: all .2s ease-in-out;
   }
+  .btn{
+    border-style: solid;
+    border-radius: 5px;
+    border-width:2px;
+    border-color: #18654e;
+    color:#18654e;
+    background-color: #18654e;
+    color: #ffff;
+    transition: none;
+  }
+  .btn:hover{
+    background-color: #ffff;
+    color: #18654e;
+    transition: none;
+  }
   .col-md-6 a{
     margin-left: 0;
   }
@@ -316,13 +331,13 @@
   <!-- End Cards for next projects -->
     <% if @projects.count > 5 %> 
       <div class="d-flex justify-content-center my-5 btn-posts">
-          <button class="btn btn-edit" style="width:100%;" type="button" data-bs-toggle="collapse" data-bs-target=".collapse" aria-controls="collapseExample" aria-expanded="false" aria-label="Toggle cards">
+          <button class="btn btn-edit" type="button" data-bs-toggle="collapse" data-bs-target=".collapse" aria-controls="collapseExample" aria-expanded="false" aria-label="Toggle cards">
               Load More
           </button>
       </div>
       <div class="collapse card-container next-projects">
           <div class="d-flex flex-wrap justify-content-between">
-            <% @projects.slice(4, @projects.count-4).each do |project| %>
+            <% @projects.slice(5, @projects.count-5).each do |project| %>
               <div class="card me-5 mb-5" style="width: 45%;">
                 <div class="card-body">
                   <p><%= project.created_at.mday %>/<%= project.created_at.month %>/<%= project.created_at.year %></p>
@@ -342,7 +357,7 @@
 <div class="text-center jumbotron">
     <h1>Find your way</h1>
     <br />
-    <p>Check the location of the latest projects.</p>
+    <p class="me-0">Check the location of the latest projects.</p>
 </div>
 <!--End Jumbotron -->
 <div id="map"></div>
