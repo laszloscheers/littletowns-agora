@@ -73,12 +73,10 @@ Rails.application.configure do
   config.action_mailer.smtp_settings = {
     address: "smtp-relay.sendinblue.com",
     port: 587,
-    domain: "sendinblue.com",
+    domain: "littletownsagora.fly.dev",
     authentication: "plain",
     enable_starttls_auto: true,
-    user_name: "littletownsagora@hotmail.com",
-    password: "HCUMtcqLKSrD8NYR",
-    authentication: 'plain',
-    enable_starttls_auto: true
+    user_name: "laszloluque@gmail.com",
+    password: ""
   }
 end
