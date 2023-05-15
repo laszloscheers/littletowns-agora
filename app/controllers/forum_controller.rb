@@ -7,6 +7,8 @@ class ForumController < ApplicationController
 
   def index
     @posts = Post.all
+    @postFirstFour = Post.first(4)
+    @postRest = Post.last(@posts.count-4) 
   end
 
   def show
