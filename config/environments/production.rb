@@ -100,6 +100,6 @@ Rails.application.configure do
     authentication: :login,
     enable_starttls_auto: true,
     user_name: "littletownsagora@hotmail.com",
-    password: ""
+    password: "6497_tot"
   }
 end
