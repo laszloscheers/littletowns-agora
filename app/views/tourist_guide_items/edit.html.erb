@@ -52,13 +52,13 @@
         <h2>Edit Tourist Guide Item</h2>
       </div>
       <div class="card-body">
-        <%= form_with(model: @tourist_guide_items) do |form| %>
-                <% if @tourist_guide_items.errors.any? %>
+        <%= form_with(model: @tourist_guide_item) do |form| %>
+                <% if @tourist_guide_item.errors.any? %>
                   <div style="color: red">
-                    <h2><%= pluralize(@tourist_guide_items.errors.count, "error") %> prohibited this @tourist_guide_items from being saved:</h2>
+                    <h2><%= pluralize(@tourist_guide_item.errors.count, "error") %> prohibited this @tourist_guide_item from being saved:</h2>
 
                     <ul>
-                      <% @tourist_guide_items.errors.each do |error| %>
+                      <% @tourist_guide_item.errors.each do |error| %>
                         <li><%= error.full_message %></li>
                       <% end %>
                     </ul>
